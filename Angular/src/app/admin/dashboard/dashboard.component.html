@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modern Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+
+      border-bottom: 1px solid #000000;
+
+      z-index: 1000;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .navbar-brand {
+      font-weight: 600;
+
+      color: #000000;
+
+      font-size: 22px;
+    }
+    .navbar input {
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      padding: 8px 15px;
+      outline: none;
+    }
+    .navbar .btn-outline-light {
+
+      border-color: #000000;
+      color: #333;
+    }
+    .navbar .btn-outline-light:hover {
+      background-color: #000000;
+
+    }
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 240px;
+      height: calc(100vh - 56px);
+      background-color: #343a40;
+      padding-top: 20px;
+      transition: width 0.3s ease;
+    }
+    .sidebar a {
+
+      display:flex ;
+      align-items: center;
+      color: #ffffff;
+      padding: 20px 20px;
+
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+      margin-left: 10%;
+    }
+    .sidebar a:hover {
+      background-color: #495057;
+    }
+    .sidebar i {
+      margin-right: 5px;
+      font-size: 18px;
+    }
+
+    /* SPACING BETWEEN ICON AND TEXT */
+    .sidebar a span {
+      margin-left: 10%;
+    }
+    /* MAIN CONTENT */
+
+    .content {
+      margin-left: 240px;
+      margin-top: 56px;
+      padding: 30px;
+      background-color: #f0f2f5;
+      min-height: calc(100vh - 56px);
+    }
+
+    .card {
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 60px;
+      }
+      .content {
+        margin-left: 60px;
+      }
+      .sidebar a {
+        justify-content: center;
+      }
+      .sidebar a span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" routerLink="/admin">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <form class="d-flex">
+
+      <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+    <button class="btn btn-outline-secondary ms-auto" (click)="toggleTheme()">
+      Toggle Theme
+    </button>
+  </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a routerLink="/admin">
+
+      <i class="fas fa-home"></i><span> Home</span>
+    </a>
+    
+    <a routerLink="/admin/appointments">
+      <i class="fas fa-calendar-alt"></i><span> Appointments</span>
+    </a>
+
+    <a routerLink="/admin/contract-crud/list">
+      <i class="fa-solid fa-file-contract"></i><span> Contract</span>
+    </a>
+
+    <a routerLink="/admin/claims">
+      <i class="fas fa-file-alt"></i><span> Claims</span>
+
+    </a>
+ 
+    <a routerLink="/admin/sinister">
+        <i class="fas fa-calendar-alt"></i><span>  Manage Sinister</span>
+
+    </a>
+
+
+    
+    <a href="#">
+      <i class="fas fa-users"></i><span> Users</span>
+    </a>
+    <a routerLink="/admin/devis">
+      <i class="fas fa-file-invoice	"></i><span> Devis</span>
+    </a>
+
+    <a routerLink="/logout">
+      <i class="fas fa-sign-out-alt"></i><span> Logout</span>
+    </a>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <router-outlet></router-outlet>
+  </div>
+
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

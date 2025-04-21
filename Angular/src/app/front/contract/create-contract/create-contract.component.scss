@@ -1,0 +1,134 @@
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: #f8f3f3; /* or another dark color */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #fff;
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  .input-icon-group {
+    margin-bottom: 1rem;
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+  
+    .input-wrapper {
+      position: relative;
+  
+      .field-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+        pointer-events: none;
+        font-size: 1rem;
+      }
+  
+      .form-control {
+        background-color: #3a3a3a;
+        border: 1px solid #555;
+        color: #fff;
+        padding-left: 2.5rem; /* space for the icon */
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  
+        &:focus {
+          border-color: #5e72e4;
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(94, 114, 228, 0.2);
+        }
+      }
+    }
+  
+    .text-danger {
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+      color: #ff4a4a;
+    }
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1rem;
+  
+    .form-group.col-md-4,
+    .form-group.col-md-6 {
+      flex: 1;
+    }
+  }
+  
+  .border {
+    border: 1px solid #555 !important;
+  }
+  .rounded {
+    border-radius: 0.25rem !important;
+  }
+  .p-3 {
+    padding: 1rem !important;
+  }
+  
+  .btn {
+    font-weight: 500;
+    border-radius: 0.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+    &:focus {
+      outline: none;
+    }
+  
+    &.btn-primary {
+      background-color: #5e72e4;
+      border-color: #5e72e4;
+  
+      &:hover {
+        background-color: #324cdd;
+        border-color: #324cdd;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(50, 76, 221, 0.2);
+      }
+    }
+  }
+  
+  .alert {
+    background-color: #444;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 0.25rem;
+  }
+  
+  /* Optional if you want a dark background for the entire page */
+  body {
+    background-color: #1e1e1e;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .btn-create {
+    background-color: #ff9800; /* Orange background */
+    border: 1px solid #ff9800;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+    &:hover {
+      background-color: #007bff; /* Keep the same orange on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(255, 152, 0, 0.2);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }

@@ -1,0 +1,88 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Appointment List</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card modern-card">
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+          <h6 class="card-subtitle text-muted mb-3"></h6>
+
+          <button class="btn btn-primary mb-3" (click)="getAppointmentsForUser()">
+            Afficher mes rendez-vous
+          </button>
+
+          <!-- Search bar -->
+          <div class="search-bar mb-3">
+            <input type="text" class="form-control" placeholder="Search appointments..." [(ngModel)]="searchText">
+          </div>
+
+          <!-- Table for Active Appointments -->
+          <div class="table-responsive modern-table-responsive">
+            <h4 class="mb-3">Active Appointments</h4>
+            <table class="table modern-table">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Submitted Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of displayedAppointments | slice:(page - 1) * itemsPerPage:(page * itemsPerPage)">
+                  <td>{{ appointment.description }}</td>
+                  <td>{{ appointment.status }}</td>
+                  <td>{{ appointment.dateSubmitted | date }}</td>
+                  <td>
+                    <button class="btn btn-modern-info btn-sm" (click)="changeStatus(appointment)">Change Status</button>
+                    <button class="btn btn-modern-secondary btn-sm" (click)="archiveAppointment(appointment)">Archive</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <nav>
+              <ul class="pagination">
+                <li *ngFor="let p of totalPagesArray" [class.active]="p === page">
+                  <a class="page-link" (click)="changePage(p)">{{ p }}</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Table for Archived Appointments -->
+          <div class="table-responsive modern-table-responsive mt-5">
+            <h4 class="mb-3">Archived Appointments</h4>
+            <table class="table modern-table">
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Submitted Date</th>
+                  <th>Archived</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let appointment of archivedAppointments">
+                  <td>{{ appointment.description }}</td>
+                  <td>{{ appointment.status }}</td>
+                  <td>{{ appointment.dateSubmitted | date }}</td>
+                  <td>{{ appointment.archiver }}</td>
+                  <td>
+                    <button class="btn btn-modern-success btn-sm" (click)="unarchiveAppointment(appointment)">
+                      Unarchive
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

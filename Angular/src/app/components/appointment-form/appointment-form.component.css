@@ -1,0 +1,121 @@
+/* Conteneur du formulaire */
+.form-container {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.753); /* Fond blanc pour un look propre */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  font-family: Arial, sans-serif;
+}
+
+/* Titres */
+.form-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f38f1d; /* Orange de la charte graphique */
+  margin-bottom: 20px;
+  margin-left: 30%;
+}
+
+/* Groupes de champs de formulaire */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00000080; /* Gris foncé */
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Style du placeholder */
+.form-group input::placeholder {
+  color: #0100006c; /* Orange de la charte graphique */
+  opacity: 1; /* Pour s'assurer qu'il est bien visible */
+  font-style: italic;
+}
+
+/* Champ de texte et date */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f962;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+  border-color: #004b8d; /* Bleu de la charte au focus */
+  outline: none;
+}
+
+/* Bouton de soumission */
+.btn-submit {
+  background-color: #09060399; /* Orange de la charte */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #d97713; /* Orange plus foncé au survol */
+}
+
+.btn-submit:disabled {
+  background-color: #ccc; /* Désactivation du bouton */
+  cursor: not-allowed;
+}
+
+/* Nouveau style pour le bouton de suggestion de date */
+.btn-primary {
+  background-color: #004b8d; /* Bleu de la charte graphique */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 2%;
+}
+
+.btn-primary:hover {
+  background-color: #003b6f; /* Bleu plus foncé au survol */
+}
+
+/* Style pour l'affichage de la date suggérée */
+p {
+  font-size: 16px;
+  color: #333;
+  margin-top: 15px;
+}
+
+/* Pour rendre la page plus responsive */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 15px;
+    margin-top: 10%;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group select {
+    font-size: 12px;
+  }
+}

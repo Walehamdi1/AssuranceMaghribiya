@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/assets/css/style55.css" />
+
+<div class="container">
+  <h2 mat-dialog-title>Modifier Devis</h2>
+
+  <mat-dialog-content>
+    <form #modifierForm="ngForm">
+      <mat-form-field class="full-width">
+        <mat-label>Nom Client</mat-label>
+        <input matInput [(ngModel)]="devis.nomClient" name="nomClient" required minlength="5" pattern="^[a-zA-Z ]+$" />
+        <mat-error *ngIf="modifierForm.form.controls['nomClient']?.invalid && modifierForm.form.controls['nomClient']?.touched">
+          Nom Client must be at least 5 characters and contain only letters.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email Client</mat-label>
+        <input matInput type="email" [(ngModel)]="devis.emailClient" name="emailClient" required />
+        <mat-error *ngIf="modifierForm.form.controls['emailClient']?.invalid && modifierForm.form.controls['emailClient']?.touched">
+          Invalid email format.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Start Date</mat-label>
+        <input matInput type="date" [(ngModel)]="devis.dateDebut" name="dateDebut" required />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>End Date</mat-label>
+        <input matInput type="date" [(ngModel)]="devis.dateFin" name="dateFin" required />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Tranche Age</mat-label>
+        <input matInput type="number" [(ngModel)]="devis.trancheAge" name="trancheAge" required min="1" max="100" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Nationalité</mat-label>
+        <mat-select [(ngModel)]="devis.nationalite" name="nationalite" required>
+          <mat-option *ngFor="let nat of ['Française', 'Italienne', 'Espagnole']" [value]="nat">
+            {{ nat }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Destination</mat-label>
+        <input matInput [(ngModel)]="devis.destination" name="destination" required minlength="3" pattern="^[a-zA-Z ]+$" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Annuler</button>
+    <button mat-raised-button color="primary" (click)="onSave()" [disabled]="modifierForm.invalid">Modifier</button>
+  </mat-dialog-actions>
+</div>

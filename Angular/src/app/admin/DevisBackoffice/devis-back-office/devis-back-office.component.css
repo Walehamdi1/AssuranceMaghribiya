@@ -1,0 +1,195 @@
+
+.devis-actions {
+    display: flex; 
+    gap: 10px;
+} 
+
+/* Container */
+.container {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titres */
+  h2.mb-4, h4.card-title, h6.card-subtitle {
+    font-family: Arial, sans-serif;
+    color: #004b8d; /* Couleur bleu conformément à la charte graphique */
+  }
+  
+  h2.mb-4 {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  h4.card-title {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  h6.card-subtitle {
+    color: #9d9d9d; /* Gris clair */
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+  
+  /* Bouton Ajouter */
+  .btn-primary {
+    background-color: #f38f1d; /* Orange conformément à la charte */
+    border: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #d97713; /* Orange plus foncé au survol */
+  }
+  
+  /* Carte */
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  .card-body {
+   width: 1000;
+  }
+  
+  /* Tableau */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th {
+    background-color: #272727; /* Noir/gris foncé */
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  .table td {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Table Responsive */
+  .table-responsive {
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #ffffff;
+  }
+  
+  /* Boutons Modifier et Supprimer */
+  .btn-warning {
+    background-color: #004b8d; /* Bleu conformément à la charte */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 5px;
+    margin-right: 5px;
+  }
+  
+  .btn-warning:hover {
+    background-color: #003366; /* Bleu plus foncé au survol */
+  }
+  
+  .btn-danger {
+    background-color: #d9534f; /* Rouge danger standard */
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 5px;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c9302c; /* Rouge plus foncé au survol */
+  }
+  .snackbar-warning {
+    background-color: #ff9800;
+    color: white;
+    text-align: center;
+  }
+  .btn-green {
+    background-color: #28a745; /* Vert Bootstrap */
+    color: white;
+    border: none;
+  }
+  
+  .btn-green:hover {
+    background-color: #218838;
+  }
+  .search-input {
+    width: 100%;
+    max-width: 300px; /* Ajuste la largeur max */
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: #28a745; /* Vert Bootstrap */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.search-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  width: 160px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h4 {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.stat-card p {
+  margin: 5px 0 0;
+  font-size: 20px;
+}
+
+.pending {
+  background-color: #f0ad4e; /* Orange */
+}
+
+.accepted {
+  background-color: #28a745; /* Vert */
+}
+
+.rejected {
+  background-color: #dc3545; /* Rouge */
+}
+
+
+  

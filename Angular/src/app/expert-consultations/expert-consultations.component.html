@@ -1,0 +1,105 @@
+<p-card header="Mes Consultations" class="mb-3">
+    <div class="top-section">
+      <div class="chart-container">
+        <p-chart type="pie" [data]="pieChartData" [options]="pieChartOptions"></p-chart>
+      </div>
+  
+      <div class="filters mb-3">
+        <p-calendar
+          [(ngModel)]="selectedWeek"
+          selectionMode="range"
+          placeholder="Filtrer par semaine"
+          dateFormat="dd/mm/yy"
+          (onSelect)="filterConsultations()"
+          [showIcon]="true"
+        ></p-calendar>
+      </div>
+    </div>
+  
+    <p-table
+      [value]="filteredConsultations"
+      [paginator]="true"
+      [rows]="5"
+      [responsiveLayout]="'scroll'"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Affichage de {first} à {last} sur {totalRecords} consultations"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      selectionMode="multiple"
+      [(selection)]="selectedConsultations"
+      (onSelectionChange)="onSelectionChange($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Type de Consultation</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+  
+      <ng-template pTemplate="body" let-consultation>
+        <tr>
+          <td>{{ consultation.dateConsultation | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ consultation.insuranceType }}</td>
+          <td>
+            <span
+              [ngClass]="{
+                'status-valid': consultation.statut === 'VALIDÉE',
+                'status-pending': consultation.statut === 'EN_COURS',
+                'status-refused': consultation.statut === 'REJETÉE'
+              }"
+              class="p-badge"
+            >
+              {{ consultation.statut }}
+            </span>
+          </td>
+          <td>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-info p-button-sm"
+              (click)="openDetails(consultation)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+  
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">Aucune consultation trouvée pour cette période.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+  
+  <!-- ✅ DIALOG - Détails consultation -->
+  <p-dialog
+    header="Détails de la Consultation"
+    [(visible)]="displayModal"
+    [modal]="true"
+    [style]="{ width: '500px' }"
+    [closable]="true"
+    [dismissableMask]="true"
+  >
+    <div *ngIf="selectedConsultationDetails">
+      <p><strong>Date :</strong> {{ selectedConsultationDetails.dateConsultation | date: 'dd/MM/yyyy HH:mm' }}</p>
+      <p><strong>Type d'assurance :</strong> {{ selectedConsultationDetails.insuranceType }}</p>
+      <p><strong>Objet :</strong> {{ selectedConsultationDetails.objet }}</p>
+      <p><strong>Description :</strong> {{ selectedConsultationDetails.description }}</p>
+      <p><strong>Statut :</strong> {{ selectedConsultationDetails.statut }}</p>
+  
+      <p *ngIf="selectedConsultationDetails.rating != null">
+        <strong>Note du client :</strong>
+        <p-rating [readonly]="true" [cancel]="false" [ngModel]="selectedConsultationDetails.rating"></p-rating>
+      </p>
+      <p *ngIf="selectedConsultationDetails.comment">
+        <strong>Commentaire :</strong> {{ selectedConsultationDetails.comment }}
+      </p>
+  
+      <p *ngIf="selectedConsultationDetails.expertAction">
+        <strong>Action de l'expert :</strong> {{ selectedConsultationDetails.expertAction }}
+      </p>
+    </div>
+  </p-dialog>
+  

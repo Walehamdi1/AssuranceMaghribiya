@@ -1,0 +1,106 @@
+<div class="form-container p-animate__animated p-animate__fadeIn">
+  <h2 class="form-title">{{ consultation.id ? 'Modifier' : 'Ajouter' }} une Consultation</h2>
+
+  <form (ngSubmit)="saveConsultation()" #consultationForm="ngForm" novalidate>
+    <input type="hidden" [(ngModel)]="consultation.clientId" name="clientId" />
+
+    <div class="form-group">
+      <label for="date">Date et Heure</label>
+      <p-calendar [(ngModel)]="consultation.dateConsultation"
+                  name="date"
+                  [minDate]="minDate"
+                  [showTime]="true"
+                  [hourFormat]="'24'"
+                  [required]="true"
+                  appendTo="body"
+                  inputId="date">
+      </p-calendar>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-align-left"></i>
+        <input pInputText type="text"
+               [(ngModel)]="consultation.description"
+               name="description"
+               placeholder="Décrivez votre besoin"
+               required
+               minlength="10"
+               maxlength="500"
+               pattern="^[A-Za-zÀ-ÿ0-9\s]+$" />
+      </span>
+      <small *ngIf="consultationForm.controls['description']?.invalid && consultationForm.controls['description']?.touched" class="error-message">
+        La description doit être composée uniquement de lettres, chiffres et espaces.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="objet">Objet</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-tag"></i>
+        <input pInputText type="text"
+               [(ngModel)]="consultation.objet"
+               name="objet"
+               placeholder="Objet de la consultation"
+               required
+               minlength="5"
+               maxlength="100"
+               pattern="^[A-Za-zÀ-ÿ0-9\s]+$" />
+      </span>
+      <small *ngIf="consultationForm.controls['objet']?.invalid && consultationForm.controls['objet']?.touched" class="error-message">
+        L'objet doit être composé uniquement de lettres, chiffres et espaces.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="insuranceType">Type de Consultation</label>
+      <p-dropdown [(ngModel)]="consultation.insuranceType"
+                  name="insuranceType"
+                  [options]="insuranceTypes"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Sélectionnez un type"
+                  [required]="true"
+                  #insuranceType="ngModel">
+      </p-dropdown>
+      <small *ngIf="insuranceType.invalid && insuranceType.touched" class="error-message">
+        Veuillez sélectionner un type de consultation.
+      </small>
+    </div>
+
+    <p *ngIf="isListening" class="micro-feedback">🎧 Écoute en cours... Parlez maintenant !</p>
+
+    <div class="form-actions">
+      <button pButton type="submit"
+              label="{{ consultation.id ? 'Mettre à jour' : 'Ajouter' }} Consultation"
+              icon="pi pi-check"
+              [disabled]="loading || !consultationForm.form.valid">
+      </button>
+
+      <button pButton
+              type="button"
+              label="Demander consultation en ligne"
+              icon="pi pi-video"
+              (click)="toggleOverlayPanel($event)">
+      </button>
+
+      <p-overlayPanel #op>
+        <div class="video-options">
+          <button pButton type="button" label="Teams" icon="pi pi-microsoft-teams" (click)="requestOnlineConsultation('Teams')"></button>
+          <button pButton type="button" label="Google Meet" icon="pi pi-google" (click)="requestOnlineConsultation('Google Meet')"></button>
+          <button pButton type="button" label="Zoom" icon="pi pi-video" (click)="requestOnlineConsultation('Zoom')"></button>
+        </div>
+      </p-overlayPanel>
+    </div>
+
+    <div class="form-actions">
+      <button pButton type="button"
+              label="🎤 Prendre RDV par la voix"
+              icon="pi pi-microphone"
+              class="p-button-warning"
+              (click)="startVoiceRecognition()">
+      </button>
+    </div>
+  </form>
+</div>

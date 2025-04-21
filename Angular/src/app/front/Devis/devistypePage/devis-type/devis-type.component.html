@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<section class="section collection" id="collection" aria-label="collection" data-section>
+    <div class="container">
+        <!-- Ajout du titre de la section -->
+        <h1 class="section-title">Our Services</h1>
+
+        <ul class="collection-list">
+            <!-- Devis HABITATION -->
+            <li>
+                <div class="collection-card has-before hover:shine">
+                    <h2 class="card-title">
+                      HOUSING quote</h2>
+                    <a [routerLink]="['/create-devis-habitation']" [queryParams]="{ typeAssurance: 'HABITATION' }" class="btn-link">
+                        <span class="span">Create quote</span>
+                    </a>
+                    <div class="has-bg-image" style="background-image: url('assets/images/vv.jpg')"></div>
+                </div>
+            </li>
+            
+            <!-- Devis VOYAGE -->
+            <li>
+                <div class="collection-card has-before hover:shine">
+                    <h2 class="card-title">trip quote</h2>
+    
+                    <a [routerLink]="['/devis']" [queryParams]="{ typeAssurance: 'VOYAGE' }" class="btn-link">
+                        <span class="span">Create quote</span>
+                    </a>
+                    <div class="has-bg-image" style="background-image: url('assets/images/vv.jpg')"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

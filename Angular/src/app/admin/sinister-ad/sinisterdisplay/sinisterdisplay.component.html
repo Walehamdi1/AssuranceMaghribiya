@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Related Sinister Details</h2>
+    <br>
+  
+    <br>
+   <br>
+    <div *ngIf="sinisterDetails.length > 0; else noDetails">
+      <div *ngFor="let detail of sinisterDetails" class="card mb-3">
+        <div class="card-body">
+          <p><strong>Location:</strong> {{ detail.location }}</p>
+          <p><strong>Agent ID:</strong> {{ detail.agentID }}</p>
+          <p><strong>Client ID:</strong> {{ detail.clientID }}</p>
+          <p><strong>Description:</strong> {{ detail.description }}</p>
+          <p><strong>Reported Date:</strong> {{ detail.reportedDate | date: 'yyyy-MM-dd HH:mm a' }}</p>
+          <p><strong>Status:</strong> {{ detail.status }}</p>
+          <p><strong>Evidence Files:</strong>    <button (click)="downloadFile(detail.id)" class="btn btn-primary">Download Evidence File</button>                            </p>
+    <!--       <button (click)="openFile(detail.evidenceFiles)" class="btn btn-primary">View Evidence File</button> -->
+
+          <p><strong>Estimated Damage Cost:</strong> {{ detail.estimatedDamageCost | currency }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noDetails>
+      <p>No related sinister details available.</p>
+    </ng-template>
+
+    <!-- Buttons to update status -->
+    <div *ngIf="sinister.status === 'PENDING'">
+      <button (click)="updateSinisterStatus('ACCEPTED')" class="btn btn-success">Accept</button>
+      <button (click)="updateSinisterStatus('DECLINED')" class="btn btn-danger">Decline</button>
+    </div>
+
+    <button routerLink="/admin/sinister" class="btn btn-secondary">Back to List</button>
+  </div>
+</div>

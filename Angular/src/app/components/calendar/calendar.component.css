@@ -1,0 +1,203 @@
+/* Personnaliser la couleur de fond du calendrier */
+.fc {
+ /* Gris clair */
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  /* Modifier l'apparence des jours */
+  .fc-daygrid-day {
+    border: 1px solid #ddd;
+  }
+  
+  /* Changer la couleur du texte des jours */
+  .fc-daygrid-day-number {
+    color: #004b8d; /* Bleu de ta charte graphique */
+    font-weight: bold;
+  }
+  
+  /* Personnaliser les événements */
+  .fc-event {
+    background-color: #f38f1d !important; /* Orange */
+    color: white !important;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 14px;
+  }
+  
+  /* Survol d'un événement */
+  .fc-event:hover {
+    background-color: #d97706 !important; /* Orange foncé */
+    cursor: pointer;
+  }
+  
+  /* Personnaliser le header du calendrier */
+  .fc-toolbar-title {
+    color: #272727; /* Noir/Gris foncé */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Personnaliser les boutons du calendrier */
+  .fc-button {
+    background-color: #004b8d !important; /* Bleu */
+    color: white !important;
+    border: none !important;
+  }
+  
+  .fc-button:hover {
+    background-color: #003366 !important; /* Bleu foncé */
+  }
+  .custom-calendar-container {
+    max-width: 1150px;
+    margin: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+
+  }
+
+  /* Style général des boutons */
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Bouton pour afficher tous les rendez-vous */
+.btn-secondary {
+  background-color: #004b8d; /* Bleu */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #003366; /* Bleu plus foncé */
+}
+
+/* Bouton pour ajouter un rendez-vous */
+.custom-calendar-container button {
+  background-color: #f38f1d; /* Orange */
+  color: white;
+  padding: 12px 20px;
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.custom-calendar-container button:hover {
+  background-color: #d97800; /* Orange plus foncé */
+}
+
+/* Ajoute une ombre pour un effet plus dynamique */
+button:focus, button:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* Style pour la section Réclamations de l'utilisateur */
+/* Container général pour la section */
+.claims-container {
+  background-color: #ffffff93; /* Fond blanc épuré */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 1px solid #ffffff93;
+  width: 75%;
+}
+
+/* Titre de la section */
+.claims-container h2 {
+  color: #333333;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Style général du tableau */
+.claims-container .table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* espace entre les lignes */
+}
+
+/* En-têtes du tableau */
+.claims-container .table th {
+  background: linear-gradient(135deg, #ffffff2f, #ffffff2f);
+  color: #ffffff93;
+  padding: 15px;
+  font-size: 16px;
+  text-align: left;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Cellules du tableau */
+.claims-container .table td {
+  background-color: #ffffff93;
+  padding: 15px;
+  font-size: 15px;
+  color: #555;
+  border-bottom: 1px solid #ffffff93;
+}
+
+/* Lignes du tableau avec hover pour moderniser l'interaction */
+.claims-container .table tbody tr {
+  transition: background-color 0.3s ease;
+}
+.claims-container .table tbody tr:hover {
+  background-color: #ffffff93;
+}
+
+/* Badges de statut modernisés */
+.claims-container .badge {
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Couleurs personnalisées pour les statuts */
+.claims-container .badge.bg-warning {
+  background-color: #f39c12;
+  color: #ffffff;
+}
+
+.claims-container .badge.bg-primary {
+  background-color: #cddb34;
+  color: #ffffff;
+}
+
+.claims-container .badge.bg-success {
+  background-color: #27ae60;
+  color: #ffffff;
+}
+
+/* Style des paragraphes */
+.claims-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #777777;
+}
+
+/* Style pour les messages d'erreur */
+.claims-container .text-danger {
+  color: #e74c3c;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+  
+  

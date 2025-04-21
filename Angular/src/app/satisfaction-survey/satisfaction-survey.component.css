@@ -1,0 +1,93 @@
+/* Conteneur principal de l'enquête */
+.survey-container {
+    max-width: 600px; /* Limite la largeur pour un meilleur rendu */
+    margin: 0 auto; /* Centre le formulaire */
+    padding: 20px;
+    background-color: #f4f4f9; /* Couleur de fond claire */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    margin-top: 5%;
+    margin-bottom: 2%;
+  }
+  
+  .survey-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #004b8d; /* Bleu de la charte graphique */
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Espacement entre les champs */
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: 600; /* Gras pour les labels */
+    color: #272727; /* Noir/Gris foncé */
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Bordure légère */
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+  }
+  
+  input[type="number"]:focus,
+  textarea:focus {
+    border-color: #f38f1d; /* Orange de la charte graphique */
+    outline: none;
+  }
+  
+  textarea {
+    height: 120px; /* Hauteur par défaut pour les commentaires */
+    resize: vertical; /* Permet de redimensionner verticalement */
+  }
+  
+  button[type="submit"] {
+    background-color: #f38f1d; /* Orange de la charte graphique */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-left: 40%;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #004b8d; /* Bleu de la charte graphique */
+  }
+  
+  button[type="submit"]:focus {
+    outline: none;
+  }
+  
+  /* Responsivité */
+  @media (max-width: 768px) {
+    .survey-container {
+      padding: 15px;
+    }
+  
+    .survey-container h2 {
+      font-size: 20px;
+    }
+  
+    input[type="number"],
+    textarea {
+      font-size: 14px;
+    }
+  
+    button[type="submit"] {
+      font-size: 14px;
+    }
+  }
+  

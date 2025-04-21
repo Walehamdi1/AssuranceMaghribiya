@@ -1,0 +1,88 @@
+/* Container Styling */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  mat-label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  input.mat-input-element, 
+  textarea.mat-input-element, 
+  select.mat-input-element {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus, 
+  textarea:focus, 
+  select:focus {
+    border-color: #5e72e4;
+    box-shadow: 0 0 5px rgba(94, 114, 228, 0.3);
+    outline: none;
+  }
+  
+  /* Button Styles */
+  .btn-custom {
+    background-color: orange;
+    color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    background-color: darkorange;
+    transform: scale(1.05);
+  }
+  
+  .btn-secondary {
+    background-color: #adb5bd;
+    color: white;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #868e96;
+    transform: scale(1.05);
+  }
+  
+  /* Dialog Actions */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  

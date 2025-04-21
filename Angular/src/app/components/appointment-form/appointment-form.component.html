@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="form-container">
+  <h2>{{ appointement.idAppointment ? 'Edit' : 'Add' }} an Appointment</h2>
+  <form #appointmentForm="ngForm" (ngSubmit)="saveAppointment()">
+
+  <!--  <div class="form-group">
+      <label for="userId">User ID</label>
+      <input 
+        type="number" 
+        [(ngModel)]="appointement.userId" 
+        name="userId" 
+        required 
+        #userId="ngModel" 
+        placeholder="Enter user ID" />
+      <div *ngIf="userId.invalid && (userId.dirty || userId.touched)" class="error">
+        <div *ngIf="userId.errors?.['required']">User assignment is required.</div>
+      </div>
+    </div>-->
+    
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        placeholder="Please add your first and last name along with the description."
+        [(ngModel)]="appointement.description"
+        name="description"
+        required
+        maxlength="255"
+        #description="ngModel"
+      />
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error">
+        <div *ngIf="description.errors?.['required']">The description is required.</div>
+        <div *ngIf="description.errors?.['maxlength']">The description must not exceed 255 characters.</div>
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <label for="dateSubmitted">Date</label>
+      <input
+        type="date"
+        [(ngModel)]="appointement.dateSubmitted"
+        name="dateSubmitted"
+        required
+        [min]="today"
+        #dateSubmitted="ngModel"
+      />
+      <button type="button" (click)="suggestOptimalDate()" class="btn btn-primary">Suggest an optimal date</button>
+      <div *ngIf="optimalDate">
+        <p>Suggested date : <strong>{{ optimalDate | date:'fullDate' }}</strong></p>
+        <p *ngIf="!optimalDateAvailable">Cette date est déjà complète, une autre sera suggérée.</p>
+      </div>
+    </div>
+    
+
+
+    <!-- Status (read-only) -->
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" [value]="appointement.status" disabled class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn-submit" [disabled]="appointmentForm.invalid">
+      {{ appointement.idAppointment ? 'Update' : 'Add' }}
+    </button>
+  </form>
+</div>

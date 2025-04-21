@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<!-- Loading Section -->
+<div *ngIf="loading" class="appointment-details-container">
+  <p class="loading-message">Loading appointment details...</p>
+</div>
+
+<!-- Appointment Details Section -->
+<div *ngIf="!loading && appointment; else errorTpl" class="appointment-details-container">
+  <h2>Appointment Details</h2>
+  <p><strong>Description:</strong> {{ appointment.description }}</p>
+  <p><strong>Date:</strong> {{ appointment.dateSubmitted | date:'short' }}</p>
+  <p>
+    <strong>Status:</strong>
+    <span [ngClass]="{'pending': appointment.status === 'PENDING', 'confirmed': appointment.status === 'CONFIRMED', 'canceled': appointment.status === 'CANCELED'}">
+      {{ appointment.status }}
+    </span>
+  </p>
+
+  <!-- Reschedule Section -->
+  <div class="report-section mt-3">
+    <p>⏳ Choose the number of days to reschedule:</p>
+    <button (click)="onReport(1)" class="btn btn-outline-primary btn-sm me-1">1 Day</button>
+    <button (click)="onReport(2)" class="btn btn-outline-primary btn-sm me-1">2 Days</button>
+    <button (click)="onReport(3)" class="btn btn-outline-primary btn-sm">3 Days</button>
+    <p class="text-success mt-2" *ngIf="message">{{ message }}</p>
+  </div>
+
+  <!-- Back to Calendar -->
+  <button routerLink="/calendar" class="btn btn-outline-secondary mt-3">Back to Calendar</button>
+
+</div>
+
+<!-- Error Section -->
+<ng-template #errorTpl>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</ng-template>

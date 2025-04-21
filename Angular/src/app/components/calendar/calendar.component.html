@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<!-- Section Calendrier -->
+<div class="custom-calendar-container">
+  <full-calendar [options]="calendarOptions"></full-calendar>
+  <button type="submit" routerLink="/appointment/add">Add Appointment</button>
+</div>
+
+<div *ngIf="selectedAppointment" class="appointment-details" 
+     [ngClass]="{'confirmed': selectedAppointment.status === 'CONFIRMED', 'pending': selectedAppointment.status !== 'CONFIRMED'}">
+  <h2>Détails du rendez-vous</h2>
+  <p>Description : {{ selectedAppointment.description }}</p>
+  <p>Date : {{ selectedAppointment.dateSubmitted | date }}</p>
+  <p>Statut : {{ selectedAppointment.status }}</p>
+</div>
+
+<!-- Section Réclamations (affichée sous le calendrier) -->
+<div class="container claims-container" style="margin-top: 30px;">
+    <h2>User Claims</h2>
+  
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+  
+    <!-- Check if there are claims -->
+    <div *ngIf="claims.length > 0; else noClaims">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Display claims -->
+                <tr *ngFor="let claim of claims">
+                    <td>{{ claim.reclamationType }}</td>
+                    <td>{{ claim.reclamationDate | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{ claim.description }}</td>
+                    <td>
+                        <span [ngClass]="{
+                            'badge bg-warning': claim.status === 'ENREGISTREE',
+                            'badge bg-primary': claim.status === 'EN_COURS',
+                            'badge bg-success': claim.status === 'TRAITEE'
+                        }">
+                            {{ claim.status }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+    <!-- Message when there are no claims -->
+    <ng-template #noClaims>
+        <p>No claims found.</p>
+    </ng-template>
+  
+    <!-- Display an error message if any -->
+    <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+  </div>
+  
+

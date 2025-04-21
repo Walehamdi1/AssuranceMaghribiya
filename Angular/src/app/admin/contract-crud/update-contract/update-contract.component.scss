@@ -1,0 +1,154 @@
+// update-contract.component.scss
+
+// 1. Define variables
+$primary-color: #007bff;
+$secondary-color: #16222d;
+$background-color: #141516;
+$card-background: #1c1a1a;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+// 2. Host Container
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: $background-color;
+}
+
+// 3. Card Layout
+.card {
+  background-color: $card-background;
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  &.bg-secondary {
+    background-color: lighten($secondary-color, 40%);
+  }
+
+  .card-header {
+    background-color: $primary-color;
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: bold;
+    border-bottom: 1px solid darken($primary-color, 10%);
+  }
+
+  .card-body {
+    padding: 2rem;
+  }
+}
+
+// 4. Section Header
+.my-header {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: $primary-color;
+}
+
+// 5. Input Group Styles (icons included)
+.input-group {
+  display: flex;
+  align-items: center;
+
+  .input-group-prepend {
+    display: flex;
+    align-items: center;
+
+    .input-group-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.75rem;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-right: 0;
+      border-radius: $border-radius 0 0 $border-radius;
+      font-size: 1.2rem;
+      color: $secondary-color;
+
+      i {
+        margin: 0;
+      }
+    }
+  }
+
+  input,
+  select {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0 $border-radius $border-radius 0;
+    font-size: 1rem;
+    transition: border-color $transition-speed, box-shadow $transition-speed;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+    }
+  }
+}
+
+// 6. Form Styles
+form {
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: $secondary-color;
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  // 7. Button Container
+  .text-center {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem; // space between Update and Cancel buttons
+
+    button {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: $border-radius;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color $transition-speed, transform 0.2s;
+
+      &.btn-primary {
+        background-color: $primary-color;
+        color: #fff;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+          transform: scale(1.05);
+        }
+      }
+
+      &.cancel-btn {
+        background-color: #dc2222;
+        color: #fff;
+
+        &:hover {
+          background-color: darken(#dc2222, 10%);
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,163 @@
+/* Add these styles to your existing CSS */
+.my-header {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #5e72e4;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  color: #000 !important;
+  transition: border-color 0.3s ease;
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-control:focus {
+  border-color: #5e72e4;
+  box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+}
+
+.my-custom-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.my-custom-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.card-header h2, .card-header h3 {
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.invalid-feedback {
+  font-size: 0.9rem;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.btn-fixed-size {
+  width: 100px;
+}
+
+.card.bg-secondary {
+  background-color: transparent !important;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.cancel-btn:focus {
+  outline: none;
+}
+
+.input-group-text {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+.fa-search {
+  color: #999;
+}
+.black-header th {
+  background-color: rgb(46, 46, 46);
+  color: white;
+  cursor: pointer;
+}
+
+.black-header th:hover {
+  background-color: #000000;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #sinisterTable, #sinisterTable * {
+    visibility: visible;
+  }
+  #sinisterTable {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.btn btn-primary{
+  background-color: #808080; /* Standard grey */
+  border-color: #808080;
+  color: #ffffff; /* White text for better contrast */
+}
+.custom-grey-btn {
+  background-color: #808080; /* Standard grey */
+  border-color: #808080;
+  color: #ffffff; /* White text for better contrast */
+  margin: 1%;
+}
+
+.custom-grey-btn:hover {
+  background-color: #696969; /* Darker grey on hover */
+  border-color: #696969;
+}
+.table-responsive > .table-bordered {
+  border: 0; }
+  .status-cards .card {
+    width: 20%;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .status-cards .card h2 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  .status-cards .card p {
+    font-size: 1.2em;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left-buttons, .right-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+  }
+  .small {
+    font-size: 0.8rem;
+  }
+  
+  .text-muted {
+    color: #6c757d;
+  }

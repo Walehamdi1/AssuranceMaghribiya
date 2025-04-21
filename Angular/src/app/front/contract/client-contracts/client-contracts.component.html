@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="container my-4">
+    <!-- When no contract is selected, display the list -->
+    <div *ngIf="!selectedContract">
+      <h2>My Contracts</h2>
+      <div *ngIf="isLoading">Loading contracts...</div>
+      
+      <!-- Search Field -->
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Contract Number"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+        />
+      </div>
+      
+      <table class="table table-hover" *ngIf="!isLoading && contracts.length">
+        <thead>
+          <tr>
+            <th>Contract #</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contract of contracts" (click)="onSelect(contract)" style="cursor: pointer;">
+            <td>{{ contract.contractNumber }}</td>
+            <td>{{ contract.type }}</td>
+            <td>{{ contract.status }}</td>
+            <td>{{ contract.property?.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="!isLoading && contracts.length === 0" class="alert alert-warning">
+        No contracts found.
+      </div>
+      <div *ngIf="message" class="alert alert-warning">{{ message }}</div>
+    </div>
+  
+    <!-- When a contract is selected, display its details -->
+    <div *ngIf="selectedContract">
+      <button class="btn btn-secondary mb-3" (click)="backToList()">Back to List</button>
+      <h2>Contract Details</h2>
+      <p><strong>Contract Number:</strong> {{ selectedContract.contractNumber }}</p>
+      <p><strong>Type:</strong> {{ selectedContract.type }}</p>
+      <p><strong>Status:</strong> {{ selectedContract.status }}</p>
+      <p><strong>Start Date:</strong> {{ selectedContract.startDate }}</p>
+      <p><strong>End Date:</strong> {{ selectedContract.endDate }}</p>
+      <h3>Property Details</h3>
+      <p><strong>Address:</strong> {{ selectedContract.property?.address }}</p>
+      <p><strong>Area:</strong> {{ selectedContract.property?.area }}</p>
+      <p><strong>Property Type:</strong> {{ selectedContract.property?.propertyType }}</p>
+      <p><strong>Value:</strong> {{ selectedContract.property?.value }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,63 @@
+<div class="list-container">
+  <h2>📋 Liste des Consultations</h2>
+
+  <!-- PrimeNG Table -->
+  <p-table [value]="consultations" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-consultation>
+      <tr>
+        <td>{{ consultation.id }}</td>
+        <td>{{ consultation.dateConsultation | date: 'short' }}</td>
+        <td>
+          <p-tag 
+            [value]="consultation.statut" 
+            [severity]="getStatutSeverity(consultation.statut)">
+          </p-tag>
+        </td>
+        <td class="p-d-flex p-ai-center p-gap-2">
+
+          <!-- Demander consultation en ligne -->
+          <p-button 
+            *ngIf="consultation.statut === 'REJETÉE'" 
+            label="Consultation en ligne" 
+            icon="pi pi-video" 
+            class="p-button-info"
+            (click)="showOnlineConsultationOptions(consultation)">
+          </p-button>
+
+          <!-- Export PDF -->
+          <p-button 
+            *ngIf="consultation.statut !== 'REJETÉE'" 
+            label="Exporter PDF" 
+            icon="pi pi-file-pdf" 
+            class="p-button-secondary"
+            (click)="exportToPDF(consultation)">
+          </p-button>
+
+          <!-- Supprimer -->
+          <p-button 
+            icon="pi pi-trash" 
+            class="p-button-danger" 
+            (click)="deleteConsultation(consultation.id)">
+          </p-button>
+
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Message si aucune consultation -->
+  <p-message 
+    *ngIf="consultations.length === 0" 
+    severity="info" 
+    text="Aucune consultation disponible.">
+  </p-message>
+</div>

@@ -1,0 +1,179 @@
+<div class="container">
+  <h2 class="mb-4">Liste des Devis</h2>
+
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Devis</h4>
+          <h6 class="card-subtitle">Liste des Devis existants</h6>
+          <div class="stats-container">
+            <div class="stat-card pending">
+              <h4>En Attente</h4>
+              <p>{{ countPending }}</p>
+            </div>
+            <div class="stat-card accepted">
+              <h4>Acceptés</h4>
+              <p>{{ countAccepted }}</p>
+            </div>
+            <div class="stat-card rejected">
+              <h4>Rejetés</h4>
+              <p>{{ countRejected }}</p>
+            </div>
+          </div>
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Rechercher un devis..."
+            class="search-input"
+          />
+          <div class="table-responsive m-t-40">
+            <table
+              id="appointmentTable"
+              class="display nowrap table table-hover table-striped table-bordered"
+              cellspacing="0"
+              width="100%"
+            >
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Type d'Assurance</th>
+                  <th>Date Début</th>
+                  <th>Date Fin</th>
+                  <th>Statut</th>
+                  <th>Signature</th>
+                  <th>Paiement</th>
+                  <th>Nationalité</th>
+                  <th>Destination</th>
+                  <th>Tranche d'Age</th>
+                  <th>Adresse</th>
+
+                  <th>Surface</th>
+                  <th>Valeur</th>
+                  <th class="montant-total-header">Montant Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let devis of devisList
+                      | advancedSearch
+                        : searchText
+                        : [
+                            'nomClient',
+                            'typeAssurance',
+                            'statut',
+                            'nationalite',
+                            'destination'
+                          ]
+                      | paginate : { itemsPerPage: 3, currentPage: page }
+                  "
+                >
+                  <td>{{ devis.nomClient }}</td>
+                  <td>{{ devis.typeAssurance }}</td>
+                  <td>{{ devis.dateDebut }}</td>
+                  <td>{{ devis.dateFin }}</td>
+                  <td>{{ devis.statut }}</td>
+
+                  <td>
+                    <div *ngIf="devis.signature; else nonSigne">
+                      <img [src]="'http://localhost:8069/signatures/signature_' + devis.id + '.png'" />
+                    </div>
+                    <ng-template #nonSigne>
+                      <div class="text-danger">Non signé</div>
+                    </ng-template>
+                  </td>
+
+                  <td>
+                    <span
+                      *ngIf="
+                        devis?.paiements && devis.paiements.length > 0;
+                        else nonPaye
+                      "
+                    >
+                      <span
+                        *ngIf="devis.paiements?.[0]?.statut === 'Payé'"
+                        class="statut-paye"
+                        >Payé</span
+                      >
+                      <span
+                        *ngIf="devis.paiements?.[0]?.statut === 'En attente'"
+                        class="statut-attente"
+                        >En attente</span
+                      >
+                    </span>
+                    <ng-template #nonPaye>
+                      <span class="statut-non-paye">Non payé</span>
+                    </ng-template>
+                  </td>
+
+                  <td>{{ devis.nationalite }}</td>
+                  <td>{{ devis.destination }}</td>
+                  <td>{{ devis.trancheAge }}</td>
+                  <td>{{ devis.adresse }}</td>
+
+                  <td>{{ devis.surface }} m²</td>
+                  <td>{{ devis.valeur }} DT</td>
+                  <td>
+                    <span class="status">{{ devis.montantTotal }}</span>
+                  </td>
+
+                  <td>
+                    <div class="devis-actions">
+                      <button
+                        (click)="toggleDevisStatus(devis)"
+                        class="btn btn-sm"
+                        [ngClass]="
+                          devis.statut === 'ACCEPTÉ'
+                            ? 'btn-danger'
+                            : 'btn-success'
+                        "
+                      >
+                        {{
+                          devis.statut === "ACCEPTÉ" ? "Rejeter" : "Accepter"
+                        }}
+                      </button>
+
+                      <ng-container
+                        *ngIf="confirmDeleteId === devis.id; else showDeleteBtn"
+                      >
+                        <div class="mt-2">
+                          <p>Confirmer la suppression ?</p>
+                          <button
+                            (click)="deleteConfirmed(devis.id)"
+                            class="btn btn-danger btn-sm me-2"
+                          >
+                            Oui
+                          </button>
+                          <button
+                            (click)="cancelDelete()"
+                            class="btn btn-secondary btn-sm"
+                          >
+                            Non
+                          </button>
+                        </div>
+                      </ng-container>
+                      <ng-template #showDeleteBtn>
+                        <button
+                          (click)="confirmDelete(devis.id)"
+                          class="btn btn-danger btn-sm"
+                        >
+                          Supprimer
+                        </button>
+                      </ng-template>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

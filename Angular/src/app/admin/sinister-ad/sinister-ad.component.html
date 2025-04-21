@@ -1,0 +1,120 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-subtitle">Sinisters</h1>
+    <div class="status-cards d-flex justify-content-around mb-4">
+      <div class="card text-white bg-primary">
+        <div class="card-body text-center">
+          <h2>{{ totalSinisters }}</h2>
+          <p>Total Sinisters</p>
+        </div>
+      </div>
+      <div class="card text-white bg-warning">
+        <div class="card-body text-center">
+          <h2>{{ totalPending }}</h2>
+          <p>Pending</p>
+        </div>
+      </div>
+      <div class="card text-white bg-success">
+        <div class="card-body text-center">
+          <h2>{{ totalAccepted }}</h2>
+          <p>Accepted</p>
+        </div>
+      </div>
+      <div class="card text-white bg-dark">
+        <div class="card-body text-center">
+          <h2>{{ totalDeclined }}</h2>
+          <p>Declined</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Search Box -->
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Username"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+        />
+      </div>
+    </div>
+    <!-- Export Buttons -->
+    <div class="mb-3 button-container">
+      <div class="left-buttons">
+        <button class="btn custom-grey-btn" (click)="exportToCopy()">Copy</button>
+        <button class="btn custom-grey-btn" (click)="exportToCSV()">CSV</button>
+        <button class="btn custom-grey-btn" (click)="exportToExcel()">Excel</button>
+        <button class="btn custom-grey-btn" (click)="exportToPDF()">PDF</button>
+        <button class="btn custom-grey-btn" (click)="exportToPrint()">Print</button>
+      </div>
+      <div class="right-buttons">
+        <button class="btn custom-grey-btn" (click)="navigateToArchivedSinisters()">View Archived</button>
+        <button class="btn custom-grey-btn" (click)="toggleHideAcceptedDeclined()">
+          {{ hideAcceptedDeclined ? 'Show All' : 'Hide Accepted/Declined' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Flex container for table and pie chart -->
+    <div class="d-flex">
+      <!-- Data Table -->
+      <div class="table-responsive flex-grow-1">
+        <table id="sinisterTable" class="table table-striped">
+          <thead class="black-header">
+            <tr>
+              <th (click)="sort('dateOfIncident')">Date of Incident</th>
+              <th (click)="sort('description')">Description</th>
+              <th (click)="sort('status')">Status</th>
+              <th (click)="sort('location')">Location</th>
+              <th (click)="sort('typeInsurance')">Type Insurance</th>
+              <th (click)="sort('dateofcreation')">Date of Creation</th>
+              <th (click)="sort('username')">Client Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sinister of filteredSinisters | slice: (pageIndex * pageSize):((pageIndex + 1) * pageSize)">
+              <td>{{ sinister.dateOfIncident | date }}</td>
+              <td>{{ sinister.description }}</td>
+              <td>
+                {{ sinister.status }}
+                <div *ngIf="timeSpentData[sinister.id] && timeSpentData[sinister.id][sinister.status]" 
+                     class="small text-muted">
+                  Time spent from last status update: {{ timeSpentData[sinister.id][sinister.status] }}
+                </div>
+              </td>
+              <td>{{ sinister.location }}</td>
+              <td>{{ sinister.typeInsurance }}</td>
+              <td>{{ sinister.dateofcreation | date }}</td>
+              
+              <td>{{ usernames[sinister.user] }}</td>
+              <td>
+                <button class="btn btn-sm custom-grey-btn btn-display" (click)="displaySinister(sinister.id)">Display</button>
+                <button class="btn btn-sm custom-grey-btn btn-update" (click)="updateSinister(sinister.id)">Update</button>
+                <button class="btn btn-sm custom-grey-btn btn-delete" (click)="deleteSinister(sinister.id)">Delete</button>
+                <button class="btn btn-sm custom-grey-btn btn-archive" (click)="archiveSinister(sinister.id)">{{ sinister.status === 'ARCHIVED' ? 'Unarchive' : 'Archive' }}</button>
+              </td>
+            </tr>
+            <tr *ngIf="filteredSinisters.length === 0">
+              <td colspan="8" class="text-center">No sinisters found.</td>
+            </tr>
+          </tbody>
+        </table>
+        <mat-paginator [length]="filteredSinisters.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+
+      <!-- Pie Chart -->
+      <div class="ml-4" style="width: 300px;">
+        <canvas id="sinisterPieChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

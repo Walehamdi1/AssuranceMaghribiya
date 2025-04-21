@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<div class="survey-container">
+    <h2>Enquête de satisfaction</h2>
+    
+    <form (ngSubmit)="submitSurvey()" #surveyForm="ngForm">
+      <div class="form-group">
+        <label for="csatScore">Satisfaction (1 à 5) :</label>
+        <input type="number" id="csatScore" [(ngModel)]="survey.csatScore" name="csatScore" min="1" max="5" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="feedback">Vos commentaires :</label>
+        <textarea id="feedback" [(ngModel)]="survey.feedback" name="feedback" required></textarea>
+        <div *ngIf="surveyForm.submitted && !survey.feedback" class="error-message">
+          Ce champ est obligatoire.
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" [disabled]="surveyForm.invalid">Envoyer</button>
+    </form>
+</div>

@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="/assets/css/style55.css" />
+
+<div class="devis-container">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    placeholder="Rechercher un devis..."
+    class="search-input"
+  />
+
+  <table class="devis-table">
+    <thead>
+      <tr>
+        <th>Client</th>
+        <th>Type d'Assurance</th>
+        <th>Date Début</th>
+        <th>Date Fin</th>
+        <th>Statut</th>
+        <th>Signature</th>
+        <th>Paiement</th>
+        <th>Nationalité</th>
+        <th>Destination</th>
+        <th>Tranche d'Age</th>
+        <th>Adresse</th>
+        <th>Surface</th>
+        <th class="montant-total-header">Montant Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let devis of devisList
+            | advancedSearch
+              : searchText
+              : [
+                  'nomClient',
+                  'typeAssurance',
+                  'statut',
+                  'nationalite',
+                  'destination'
+                ]
+            | paginate : { itemsPerPage: 3, currentPage: page }
+        "
+      >
+        <td>{{ devis.nomClient }}</td>
+        <td>{{ devis.typeAssurance }}</td>
+        <td>{{ devis.dateDebut }}</td>
+        <td>{{ devis.dateFin }}</td>
+        <td>
+          <span class="status">{{ devis.statut }}</span>
+        </td>
+
+        <td>
+          <div *ngIf="devis.signature; else signatureUpload">
+            <img
+              [src]="'http://localhost:8069/signatures/signature_' + devis.id + '.png'"
+              class="signature-image"
+            />
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onCompareSignatureUpload($event, devis.id)"
+              class="upload-verify"
+            />
+        
+            <div *ngIf="verificationResults[devis.id]" class="verification-result">
+              Résultat : 
+              <span [ngClass]="{
+                'result-genuine': verificationResults[devis.id].result === 'Genuine',
+                'result-forged': verificationResults[devis.id].result === 'Forged'
+              }">
+                {{ verificationResults[devis.id].result }}
+              </span>
+              <br />
+              Dissimilarité : {{ verificationResults[devis.id].dissimilarity }}
+            </div>
+          </div>
+          <ng-template #signatureUpload>
+            <div class="signature-container">
+              <signature-pad
+                #signaturePad
+                [options]="signaturePadOptions"
+                (drawStart)="drawStart($event)"
+                (drawEnd)="drawComplete($event)"
+              ></signature-pad>
+        
+              <button (click)="clearSignature()">Effacer</button>
+              <button (click)="saveSignature(devis.id)">Enregistrer</button>
+            </div>
+          </ng-template>
+        </td>
+        
+        <!-- Paiement -->
+        <td>
+          <p>
+            <span
+              *ngIf="
+                devis?.paiements && devis.paiements.length > 0;
+                else nonPaye
+              "
+            >
+              <span
+                *ngIf="devis.paiements?.[0]?.statut === 'Payé'"
+                class="statut-paye"
+                >Payé</span
+              >
+              <span
+                *ngIf="devis.paiements?.[0]?.statut === 'En attente'"
+                class="statut-attente"
+                >En attente</span
+              >
+              <span
+                *ngIf="devis.paiements?.[0]?.statut === 'En attente'"
+                &&
+                devis.paiements.length
+              >
+                class="statut-attente">En attente</span
+              >
+            </span>
+            <ng-template #nonPaye>
+              <span class="statut-non-paye">Non payé</span>
+            </ng-template>
+          </p>
+        </td>
+        <td>{{ devis.nationalite }}</td>
+        <td>{{ devis.destination }}</td>
+        <td>{{ devis.trancheAge }}</td>
+        <td>{{ devis.adresse }}</td>
+
+        <td>{{ devis.surface | currency : "m²" }}</td>
+        <td class="montant-total">
+          {{ devis.montantTotal | currency : "TND" }}
+        </td>
+        <td>
+          <div class="devis-actions">
+            <button
+              *ngIf="devis.paiements?.length === 0 || devis.paiements?.[0]?.statut !== 'Payé'"
+              (click)="openPaiementDialog(devis)"
+              [disabled]="devis.statut !== 'ACCEPTÉ'"
+              class="btn pay-btn"
+            >
+              Payer
+            </button>
+            <button (click)="openModifierDialog(devis)" class="btn edit-btn">
+              Modifier
+            </button>
+
+            <button (click)="deleteDevis(devis.id)" class="btn delete-btn">
+              Supprimer
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Pagination controls -->
+
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

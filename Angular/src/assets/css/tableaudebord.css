@@ -1,0 +1,89 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/path/to/your/secure-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.contract {
+    background-color: #ffffff;
+    width: 80%;
+    margin: 20px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    border: 2px solid #004b8d;
+}
+
+.contract-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contract-header h1 {
+    font-size: 2.5rem;
+    color: #004b8d;
+}
+
+.contract-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.contract-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.contract-footer button {
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contract-footer button:first-child {
+    background-color: #004b8d;
+    color: white;
+}
+
+.contract-footer button:first-child:hover {
+    background-color: #003a70;
+}
+
+.contract-footer button:last-child {
+    background-color: #f38f1d;
+    color: white;
+}
+
+.contract-footer button:last-child:hover {
+    background-color: #e07810;
+}
+.contract-signature {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contract-signature label {
+    font-size: 16px;
+    color: #272727;
+    font-weight: bold;
+}
+
+.signature-line {
+    width: 60%;
+    height: 2px;
+    background-color: #004b8d;
+    margin: 10px auto;
+}

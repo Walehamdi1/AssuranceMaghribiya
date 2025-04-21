@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<div class="stepper-container">
+  <mat-horizontal-stepper [linear]="true">
+
+    <!-- Step 1: Insurance Selection -->
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select insurance</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Insurance</mat-label>
+          <mat-select formControlName="typeAssurance" (selectionChange)="onInsuranceTypeChange($event)">
+            <mat-option value="car">Car</mat-option>
+            <mat-option value="residence">Residence</mat-option>
+            <mat-option value="health">Health</mat-option>
+            <mat-option value="hospitalization">Hospitalization</mat-option>
+            <mat-option value="academic">Academic</mat-option>
+            <mat-option value="savings_plan">Savings Plan</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <!-- Display the estimated processing time -->
+        <div *ngIf="estimatedTime" class="estimated-time">
+          <p>{{ estimatedTime }}</p>
+        </div>
+        
+        <div>
+          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Incident Description -->
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Describe the Incident</ng-template>
+        <mat-form-field appearance="fill">
+          <textarea matInput placeholder="Description of the incident" 
+                    formControlName="description"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+ <!-- Step 3: Incident Date -->
+<mat-step [stepControl]="thirdFormGroup">
+  <form [formGroup]="thirdFormGroup">
+    <ng-template matStepLabel>Date of the incident</ng-template>
+    <mat-form-field appearance="fill">
+      <mat-label>Incident Date</mat-label>
+      <input matInput [matDatepicker]="datePicker" 
+             formControlName="incidentDate"
+             [min]="minDate" [max]="maxDate" required
+             readonly> <!-- Add the readonly attribute here -->
+      <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker [startAt]="maxDate"></mat-datepicker>
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext [disabled]="!thirdFormGroup.valid">Next</button>
+    </div>
+  </form>
+</mat-step>
+
+<!-- Step 4: Location -->
+<mat-step [stepControl]="fourthFormGroup">
+  <form [formGroup]="fourthFormGroup">
+    <ng-template matStepLabel>Location</ng-template>
+    <div id="map"></div>
+    <input matInput placeholder="Selected Location" formControlName="location" readonly>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </form>
+</mat-step>
+
+
+
+    <!-- Step 5: Document Upload -->
+    <mat-step [stepControl]="fifthFormGroup">
+      <form [formGroup]="fifthFormGroup">
+        <ng-template matStepLabel>Upload Document</ng-template>
+        <input type="file" 
+               formControlName="document" 
+               (change)="onFileChange($event)"
+               required>
+        <div *ngIf="fifthFormGroup.get('document')?.invalid && fifthFormGroup.get('document')?.touched">
+          <small class="text-danger">Please select a file.</small>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="!fifthFormGroup.valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Final Step -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You have completed the form.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="onSubmit()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Sinisters for User: Lynstorm</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div *ngIf="sinisters.length > 0; else noSinisters">
+        <div *ngFor="let sinister of sinisters" class="card mb-3" (click)="onCardClick($event, sinister.id)" style="cursor: pointer;">
+        <div class="card-body">
+          <p><strong>Date of Incident:</strong> {{ sinister.dateOfIncident | date: 'yyyy-MM-dd HH:mm a' }}</p>
+          <p><strong>Date of Creation:</strong> {{ sinister.dateofcreation | date: 'yyyy-MM-dd HH:mm a' }}</p>
+          <p><strong>Description:</strong> {{ sinister.description }}</p>
+          <p>
+            <strong>Status:</strong>
+            <span [ngClass]="{
+              'text-success': sinister.status === 'ACCEPTED',
+              'text-danger': sinister.status === 'DECLINED'
+            }">
+              {{ sinister.status }}
+            </span>
+          </p>
+          <p><strong>Location:</strong> {{ sinister.location }}</p>
+          <p><strong>Type Insurance:</strong> {{ sinister.typeInsurance }}</p>
+          <p><strong>Evidence Files:</strong>    <button (click)="downloadFile(sinister.id)" class="btn btn-primary">Download File for this sinister</button>                            </p>
+          <!--       <button (click)="openFile(detail.evidenceFiles)" class="btn btn-primary">View Evidence File</button> -->
+      
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noSinisters>
+      <p>No sinisters available for this user.</p>
+    </ng-template>
+
+    <button routerLink="/sinister" class="btn btn-secondary">Back</button>
+  </div>
+</div>

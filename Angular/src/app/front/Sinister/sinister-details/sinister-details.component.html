@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Sinister Details</h2>
+    <br>
+
+    <div *ngIf="sinisterDetails.length > 0; else noDetails">
+      <div *ngFor="let detail of sinisterDetails" class="card mb-3">
+        <div class="card-body">
+          <p><strong>Location:</strong> {{ detail.location }}</p>
+          <p><strong>Client ID:</strong> {{ detail.clientID }}</p>
+          <p><strong>Description:</strong> {{ detail.description }}</p>
+          <p><strong>Reported Date:</strong> {{ detail.reportedDate | date: 'yyyy-MM-dd HH:mm a' }}</p>
+          <p><strong>Status:</strong> {{ detail.status }}</p>
+          <p><strong>Evidence Files:</strong> 
+            <button (click)="downloadFile(detail.id)" class="btn btn-primary">Download Evidence File</button>
+          </p>
+          <p><strong>Estimated Damage Cost:</strong> {{ detail.estimatedDamageCost | currency }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noDetails>
+      <p>No sinister details available.</p>
+    </ng-template>
+
+    <button routerLink="/track" class="btn btn-secondary">Back</button>
+  </div>
+</div>

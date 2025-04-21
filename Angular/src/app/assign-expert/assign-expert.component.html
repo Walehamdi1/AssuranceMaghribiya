@@ -1,0 +1,27 @@
+<div class="expert-list">
+  <h2>Liste des Experts</h2>
+
+  <!-- Ajouter un nouvel expert -->
+  <button class="btn-add" (click)="showAddExpertForm = !showAddExpertForm">
+    Ajouter un Nouveau Expert
+  </button>
+
+  <!-- Formulaire d'ajout d'expert -->
+<div *ngIf="showAddExpertForm" class="expert-form">
+  <h3>Ajouter un Expert</h3>
+  <form (ngSubmit)="addExpert()">
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" [(ngModel)]="newExpert.nom" name="nom" required>
+
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" [(ngModel)]="newExpert.prenom" name="prenom" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="newExpert.email" name="email" required>
+
+    <label for="specialite">Spécialité:</label>
+    <input type="text" id="specialite" [(ngModel)]="newExpert.specialite" name="specialite" required>
+
+    <button type="submit" class="btn-submit">Ajouter</button>
+  </form>
+</div>

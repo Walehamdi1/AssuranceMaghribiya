@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="claim-form-container">
+  <h2>{{ claim.idClaim ? 'Edit' : 'Add' }} a Claim</h2>
+  <form>
+    <div class="claim-columns">
+      <div class="claim-left">
+        <div class="claim-group">
+          <label for="reclamationType">Claim Type</label>
+          <select id="reclamationType" [(ngModel)]="claim.reclamationType" name="reclamationType" required (change)="onReclamationTypeChange()">
+            <option value="SERVICE">Service</option>
+            <option value="QUALITY">Quality</option>
+            <option value="DELAY">Delay</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <div class="claim-group">
+          <label for="reclamationDate">Claim Date</label>
+          <input type="date" id="reclamationDate" [(ngModel)]="claim.reclamationDate" name="reclamationDate" [min]="today" required />
+        </div>
+      </div>
+
+      <div class="claim-right">
+        <div class="claim-group">
+          <label for="description">Description</label>
+          <textarea id="description" [(ngModel)]="claim.description" name="description" rows="6" required (input)="onDescriptionChange()"></textarea>
+          <div *ngIf="predefinedDescriptions.length > 0" class="suggestions-box">
+            <div *ngIf="estimatedTime > 0" class="estimated-time">
+              <small>Temps moyen estimé de traitement : <strong>{{ estimatedTime }} minutes</strong></small>
+            </div>
+            <div *ngIf="estimatedTime === 0" class="estimated-time">
+              <small>Le temps estimé sera calculé lorsque vous commencerez à saisir une description.</small>
+            </div>
+            <h4>Suggestions:</h4>
+            <ul>
+              <li *ngFor="let desc of predefinedDescriptions" (click)="claim.description = desc" class="suggestion-item">
+                {{ desc }}
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="predefinedDescriptions.length === 0" class="no-suggestions">
+            <small>Aucune suggestion disponible pour ce type de réclamation.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="claim-buttons">
+      <button *ngIf="!claim.idClaim" type="button" class="btn btn-success" (click)="createClaim()">Create</button>
+    </div>
+  </form>
+</div>

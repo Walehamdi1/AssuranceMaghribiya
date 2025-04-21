@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/assets/css/style55.css" />
+<div class="container my-4">
+  <h2 class="text-center mb-4">
+    {{ selectedContract ? "Update Devis" : "Create Devis Habitation" }}
+  </h2>
+  <form [formGroup]="createDevisForm" (ngSubmit)="createDevis()">
+    <div class="form-group">
+      <label for="nomClient">Nom Client</label>
+      <input
+        id="nomClient"
+        type="text"
+        class="form-control"
+        formControlName="nomClient"
+        placeholder="nom Client"
+      />
+      <div *ngIf="isFieldInvalid('nomClient')" class="text-danger">
+        <div *ngIf="createDevisForm.get('nomClient')?.hasError('required')">
+          Client Name is required.
+        </div>
+        <div *ngIf="createDevisForm.get('nomClient')?.hasError('minlength')">
+          Client Name must be at least 5 characters long.
+        </div>
+        <div *ngIf="createDevisForm.get('nomClient')?.hasError('pattern')">
+          Client Name must contain only letters.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="emailClient">Email Client</label>
+      <input
+        id="emailClient"
+        type="email"
+        class="form-control"
+        formControlName="emailClient"
+        placeholder="Email Client"
+      />
+      <div *ngIf="isFieldInvalid('emailClient')" class="text-danger">
+        Email format must be "example &#64; gmail.tt"
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dateDebut">Start Date</label>
+        <input
+          id="dateDebut"
+          type="date"
+          class="form-control"
+          formControlName="dateDebut"
+        />
+        <div *ngIf="isFieldInvalid('dateDebut')" class="text-danger">
+          Start Date is required and cannot be earlier than today.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dateFin">End Date</label>
+        <input
+          id="dateFin"
+          type="date"
+          class="form-control"
+          formControlName="dateFin"
+        />
+        <div *ngIf="isFieldInvalid('dateFin')" class="text-danger">
+          End Date is required and must be after Start Date.
+        </div>
+        <div
+          *ngIf="createDevisForm.hasError('endDateInvalid')"
+          class="text-danger"
+        >
+          End date must be after start date.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="valeur">Montant</label>
+      <input
+        id="montantTotal"
+        type="number"
+        class="form-control"
+        formControlName="montantTotal"
+        placeholder="Montant "
+      />
+      <div *ngIf="isFieldInvalid('montantTotal')" class="text-danger">
+        <div *ngIf="createDevisForm.get('montantTotal')?.hasError('required')">
+          Valeur is required.
+        </div>
+        <div *ngIf="createDevisForm.get('montantTotal')?.hasError('min')">
+          Valeur must be at least 1000.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="surface">surface</label>
+      <input
+        id="surface"
+        type="number"
+        class="form-control"
+        formControlName="surface"
+        placeholder="surface "
+      />
+      <div *ngIf="isFieldInvalid('surface')" class="text-danger">
+        <div *ngIf="createDevisForm.get('surface')?.hasError('required')">
+          Surface is required.
+        </div>
+        <div *ngIf="createDevisForm.get('surface')?.hasError('min')">
+          Surface must be at least 10.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="adresse">adresse</label>
+      <input
+        id="adresse"
+        type="text"
+        class="form-control"
+        formControlName="adresse"
+        placeholder="adresse"
+      />
+      <div *ngIf="isFieldInvalid('adresse')" class="text-danger">
+        <div *ngIf="createDevisForm.get('adresse')?.hasError('required')">
+          Adresse is required.
+        </div>
+        <div *ngIf="createDevisForm.get('adresse')?.hasError('minlength')">
+          Adresse must be at least 3 characters long.
+        </div>
+        <div *ngIf="createDevisForm.get('adresse')?.hasError('pattern')">
+          Adresse must contain both letters and numbers, and can include spaces,
+          commas, and hyphens.
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <re-captcha (resolved)="captchaResolved($event)" [siteKey]="siteKey">
+      </re-captcha>
+      <button
+        type="submit"
+        class="btn btn-custom"
+        [disabled]="createDevisForm.invalid || !captchaValid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,126 @@
+/* 🌟 Conteneur du formulaire - Design en carte */
+.claim-form-container {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffffd3;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display:block;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Effet au survol */
+.claim-form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 🌟 Titre du formulaire */
+.claim-form-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+/* 🌟 Style des champs */
+.claim-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.claim-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0424a7e6;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Champs de saisie */
+.claim-group input,
+.claim-group select,
+.claim-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid #dddddd90;
+  background: rgba(255, 255, 255, 0.838);
+  transition: border-color 0.3s ease-in-out;
+  outline: none;
+}
+
+/* Effet de focus */
+.claim-group input:focus,
+.claim-group select:focus,
+.claim-group textarea:focus {
+  border-bottom: 2px solid #ff6600; /* Couleur accent */
+}
+
+/* 🌟 Boutons */
+.claim-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Bouton principal */
+.claim-buttons .btn-submit {
+  background: linear-gradient(135deg, #ff6600, #ff4500);
+  color: white;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Effet au survol */
+.claim-buttons .btn-submit:hover {
+  background: linear-gradient(135deg, #ff4500, #cc3700);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
+}
+
+/* Bouton secondaire (Annuler) */
+.claim-buttons .btn-cancel {
+  background: #ddd;
+  color: #333;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Effet au survol */
+.claim-buttons .btn-cancel:hover {
+  background: #bbb;
+  transform: scale(1.05);
+}
+
+/* 🌟 Responsive */
+@media (max-width: 768px) {
+  .claim-form-container {
+      max-width: 90%;
+      padding: 30px;
+  }
+
+  .claim-buttons {
+      flex-direction: column;
+      gap: 10px;
+  }
+}

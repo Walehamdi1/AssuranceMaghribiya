@@ -1,0 +1,109 @@
+/* Conteneur global */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    animation: fadeIn 1s ease;
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Top section avec filtre + graphique */
+  .top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+    animation: fadeIn 1s ease;
+    margin-bottom: 2rem;
+  }
+  
+  /* Filtres */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  /* Carte principale */
+  .p-card {
+    margin-top: 2rem;
+    animation: fadeIn 1s ease;
+  }
+  
+  /* Graphique Pie Chart */
+  .chart-container {
+    width: 100%;
+    max-width: 300px;  /* Réduit la taille du graphique */
+    margin: 0 auto;
+    animation: fadeIn 1s ease;
+  }
+  
+  /* Section consultations */
+  .p-table {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  
+  /* Statut dynamique */
+  .status-valid {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+  }
+  
+  .status-pending {
+    background-color: #ff9800;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+  }
+  
+  .status-refused {
+    background-color: #f44336;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+  }
+  
+  /* Loader */
+  .loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Style pour le bouton et le calendrier */
+button.p-button {
+    margin-right: 1rem;
+  }
+  
+  p-calendar {
+    width: 200px;
+  }
+  
+  /* Autres styles existants */
+  .chart-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease;
+  }
+  
+  

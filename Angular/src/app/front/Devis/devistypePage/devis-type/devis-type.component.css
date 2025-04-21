@@ -1,0 +1,18 @@
+body {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  /* Centers vertically */
+    height: 100vh;  /* Full viewport height */
+    margin: 0;
+}
+
+.collection-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4cm;  /* Ensures 4cm space between list items */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;  /* Ensures items are centered inside */
+    align-items: center;
+}

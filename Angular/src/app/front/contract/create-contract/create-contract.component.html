@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<div class="container my-4">
+  <!-- Create Contract Section -->
+  <h2 class="text-center mb-4">Create Contract</h2>
+  <!-- Show form only if a contract hasn't been created yet -->
+  <form [formGroup]="contractForm" (ngSubmit)="onSubmit()" *ngIf="!createdContract">
+    <!-- Contract Number -->
+    <div class="input-icon-group">
+      <label for="contractNumber">Contract Number</label>
+      <div class="input-wrapper">
+        <i class="field-icon fa fa-id-card"></i>
+        <input id="contractNumber" type="text" class="form-control" formControlName="contractNumber" placeholder="Contract Number" />
+      </div>
+      <div *ngIf="isFieldInvalid('contractNumber')" class="text-danger">
+        Contract Number is required.
+      </div>
+    </div>
+
+    <!-- Dates -->
+    <div class="form-row">
+      <div class="form-group col-md-6 input-icon-group">
+        <label for="startDate">Start Date</label>
+        <div class="input-wrapper">
+          <i class="field-icon fa fa-calendar"></i>
+          <input id="startDate" type="date" class="form-control" formControlName="startDate" placeholder="mm/dd/yyyy" />
+        </div>
+        <div *ngIf="isFieldInvalid('startDate')" class="text-danger">
+          Start Date is required.
+        </div>
+      </div>
+      <div class="form-group col-md-6 input-icon-group">
+        <label for="endDate">End Date</label>
+        <div class="input-wrapper">
+          <i class="field-icon fa fa-calendar-alt"></i>
+          <input id="endDate" type="date" class="form-control" formControlName="endDate" placeholder="mm/dd/yyyy" />
+        </div>
+        <div *ngIf="isFieldInvalid('endDate')" class="text-danger">
+          End Date is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contract Type -->
+    <div class="input-icon-group">
+      <label for="type">Contract Type</label>
+      <div class="input-wrapper">
+        <i class="field-icon fa fa-file-alt"></i>
+        <input id="type" type="text" class="form-control" formControlName="type" placeholder="Type (e.g., Insurance)" />
+      </div>
+      <div *ngIf="isFieldInvalid('type')" class="text-danger">
+        Contract Type is required.
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="input-icon-group">
+      <label for="status">Status</label>
+      <div class="input-wrapper">
+        <i class="field-icon fa fa-flag"></i>
+        <select id="status" class="form-control" formControlName="status">
+          <option value="">Select Status</option>
+          <option value="ACTIVE">Active</option>
+          <option value="PENDING">Pending</option>
+          <option value="EXPIRED">Expired</option>
+          <option value="CANCELED">Canceled</option>
+        </select>
+      </div>
+      <div *ngIf="isFieldInvalid('status')" class="text-danger">
+        Status is required.
+      </div>
+    </div>
+
+    <!-- Property Details -->
+    <div formGroupName="property" class="border p-3 rounded mb-3">
+      <h4>Property Details</h4>
+      <!-- Address -->
+      <div class="input-icon-group">
+        <label for="address">Address</label>
+        <div class="input-wrapper">
+          <i class="field-icon fa fa-map-marker-alt"></i>
+          <input id="address" type="text" class="form-control" formControlName="address" placeholder="Property Address" />
+        </div>
+        <div *ngIf="isFieldInvalid('property.address')" class="text-danger">
+          Address is required.
+        </div>
+      </div>
+      <!-- Row for Area, Property Type, and Value -->
+      <div class="form-row">
+        <!-- Area -->
+        <div class="form-group col-md-4 input-icon-group">
+          <label for="area">Area (sq ft)</label>
+          <div class="input-wrapper">
+            <i class="field-icon fa fa-ruler-combined"></i>
+            <input id="area" type="number" class="form-control" formControlName="area" />
+          </div>
+          <div *ngIf="isFieldInvalid('property.area')" class="text-danger">
+            Area must be greater than 0.
+          </div>
+        </div>
+        <!-- Property Type -->
+        <div class="form-group col-md-4 input-icon-group">
+          <label for="propertyType">Property Type</label>
+          <div class="input-wrapper">
+            <i class="field-icon fa fa-home"></i>
+            <select id="propertyType" class="form-control" formControlName="propertyType">
+              <option value="">Select Property Type</option>
+              <option value="RESIDENTIAL">Residential</option>
+              <option value="COMMERCIAL">Commercial</option>
+              <option value="INDUSTRIAL">Industrial</option>
+              <option value="AGRICULTURAL">Agricultural</option>
+            </select>
+          </div>
+          <div *ngIf="isFieldInvalid('property.propertyType')" class="text-danger">
+            Property Type is required.
+          </div>
+        </div>
+        <!-- Value -->
+        <div class="form-group col-md-4 input-icon-group">
+          <label for="value">Value</label>
+          <div class="input-wrapper">
+            <i class="field-icon fa fa-dollar-sign"></i>
+            <input id="value" type="number" class="form-control" formControlName="value" />
+          </div>
+          <div *ngIf="isFieldInvalid('property.value')" class="text-danger">
+            Value cannot be negative.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSV Upload -->
+    <div class="csv-upload mb-3">
+      <label for="csvFile">Upload CSV file:</label>
+      <input type="file" id="csvFile" (change)="onFileChange($event)" accept=".csv" />
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons text-center mt-4">
+      <button type="submit" class="btn btn-create">Create Contract</button>
+      <button type="button" class="btn btn-create" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Display Global Message -->
+  <div *ngIf="message" class="alert alert-info mt-3 text-center">
+    {{ message }}
+  </div>
+
+  <!-- Signature Section: Displayed after contract is created -->
+  <div *ngIf="createdContract" class="signature-section mt-4">
+    <h3 class="text-center">Sign Contract</h3>
+    <div class="form-group text-center">
+      <input type="file" (change)="onSignatureFileChange($event)" accept="image/*" />
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-create" (click)="signContract()">Submit Signature</button>
+    </div>
+    <!-- Display Signature Verification Message -->
+    <div *ngIf="verificationMessage" class="alert mt-2 text-center"
+         [ngClass]="{'alert-success': verificationMessage === 'Signature Verified', 'alert-danger': verificationMessage === 'Signature Invalid'}">
+      {{ verificationMessage }}
+    </div>
+  </div>
+</div>

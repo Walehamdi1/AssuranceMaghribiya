@@ -1,0 +1,19 @@
+<div *ngIf="client; else loading">
+    <h2>Détails du client</h2>
+    <p><strong>ID:</strong> {{ client.id }}</p>
+    <p><strong>Nom:</strong> {{ client.nom }}</p>
+    <p><strong>Prénom:</strong> {{ client.prenom }}</p>
+    <p><strong>Email:</strong> {{ client.email }}</p>
+  
+    <h3>Consultations</h3>
+    <ul>
+      <li *ngFor="let consultation of client.consultations">
+        Consultation ID: {{ consultation.id }} - Type: {{ consultation.insuranceType }} - Date: {{ consultation.dateConsultation }}
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #loading>
+    <p>Chargement des détails du client...</p>
+  </ng-template>
+  

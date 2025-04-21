@@ -1,0 +1,224 @@
+
+
+/* Container for the entire contract page */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    color: #444;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    color: #343a40;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  input.form-control,
+  select.form-control,
+  textarea.form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    
+    &:focus {
+      border-color: #5e72e4; /* A nice primary color */
+      box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+      outline: none;
+    }
+  }
+
+  .text-danger {
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+}
+
+/* Nested form group for property details */
+.property-details {
+  padding: 1rem;
+  background: #f7f7f7;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+
+  h4 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+}
+
+/* Buttons */
+.btn {
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1.25rem;
+
+  &.btn-primary {
+    background-color: #5e72e4;
+    border-color: #5e72e4;
+
+    &:hover {
+      background-color: #324cdd;
+      border-color: #324cdd;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(50, 76, 221, 0.15);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #adb5bd;
+    border-color: #adb5bd;
+
+    &:hover {
+      background-color: #868e96;
+      border-color: #868e96;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &.btn-danger {
+    background-color: #f5365c;
+    border-color: #f5365c;
+
+    &:hover {
+      background-color: #d81b48;
+      border-color: #d81b48;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(216, 27, 72, 0.15);
+    }
+  }
+
+  &.btn-info {
+    background-color: #11cdef;
+    border-color: #11cdef;
+
+    &:hover {
+      background-color: #0faec7;
+      border-color: #0faec7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(15, 174, 199, 0.15);
+    }
+  }
+}
+
+/* Table Styles */
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  .card-header {
+    background: #5e72e4;
+    color: #fff;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+    h5 {
+      margin: 0;
+      padding: 0.5rem 0;
+      font-weight: 600;
+    }
+  }
+
+  .card-body {
+    background: #fff;
+  }
+}
+
+.table {
+  margin-bottom: 0;
+
+  thead {
+    &.thead-dark {
+      background-color: #343a40;
+
+      th {
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+      border-color: #dee2e6;
+    }
+  }
+}
+
+/* Search Field */
+.form-group.mt-4 {
+  margin-top: 2rem !important;
+
+  input {
+    border-radius: 0.25rem;
+    &:focus {
+      border-color: #5e72e4;
+      box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+      outline: none;
+    }
+  }
+}
+/* Bouton personnalisé */
+.btn-custom {
+  background-color: orange;  /* Couleur de fond orange */
+  color: white;              /* Couleur du texte en blanc */
+  border: 1px solid orange;  /* Bordure orange */
+  padding: 10px 20px;        /* Espacement intérieur du bouton */
+  font-size: 16px;           /* Taille du texte */
+  border-radius: 5px;        /* Bords arrondis */
+  cursor: pointer;           /* Changer le curseur au survol */
+  transition: all 0.3s ease; /* Transition douce pour les effets */
+}
+
+/* Effet de survol */
+.btn-custom:hover {
+  background-color: darkorange;  /* Couleur de fond au survol */
+  border-color: darkorange;      /* Bordure au survol */
+  transform: scale(1.05);         /* Légère augmentation de taille */
+}
+
+/* Effet de focus pour l'accessibilité */
+.btn-custom:focus {
+  outline: none;  /* Supprimer le contour par défaut */
+  box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.5);  /* Ombre douce autour du bouton */
+}
+
+/* Message (alert) */
+.alert {
+  margin-top: 1rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1.25rem;
+}
+
+/* Loader or spinner can be added if you want for isLoading state */
+
+
+  

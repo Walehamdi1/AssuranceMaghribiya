@@ -1,0 +1,116 @@
+<div class="consultation-list-container">
+  <h2 class="consultation-title">Liste des Consultations</h2>
+
+  <!-- Bouton pour afficher les statistiques -->
+  <button class="btn-stats" (click)="toggleStatistics()">Statistiques</button>
+
+  <!-- Affichage des statistiques -->
+  <div *ngIf="showStatistics">
+    <h3>Statistiques des Consultations - Semaine en Cours</h3>
+    <p>Maison: {{ statistics.maison }}</p>
+    <p>Voiture: {{ statistics.voiture }}</p>
+    <p>Santé: {{ statistics.sante }}</p>
+
+    <!-- Graphique à barres -->
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend">
+    </canvas>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filters">
+    <label for="statut">Filtrer par statut :</label>
+    <select id="statut" [(ngModel)]="filterCriteria.statut" (change)="applyFilters()">
+      <option value="">Tous</option>
+      <option value="EN_COURS">En cours</option>
+      <option value="VALIDÉE">Validée</option>
+      <option value="REJETÉE">Rejetée</option>
+    </select>
+
+    <label for="dateConsultation">Filtrer par date :</label>
+    <input type="date" id="dateConsultation" [(ngModel)]="filterCriteria.dateConsultation" (change)="applyFilters()">
+  </div>
+
+  <!-- Affichage des experts -->
+  <div *ngIf="showExperts">
+    <h3>Choisir un Expert</h3>
+    <label for="speciality">Filtrer par spécialité :</label>
+    <select id="speciality" [(ngModel)]="filterSpeciality" (change)="applyExpertFilter()">
+      <option value="">Tous</option>
+      <option value="santé">Santé</option>
+      <option value="maison">Maison</option>
+      <option value="voiture">Voiture</option>
+    </select>
+
+    <div *ngIf="experts.length > 0">
+      <ul>
+        <li *ngFor="let expert of filteredExperts">
+          <button *ngIf="selectedConsultation" (click)="assignExpert(selectedConsultation, expert)">
+            Affecter à la consultation
+          </button>
+          {{ expert.nom }} - {{ expert.specialite }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Notifications -->
+  <div *ngIf="notificationMessage" class="notification" [ngClass]="notificationType">
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Tableau des consultations -->
+  <table class="consultation-list">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Objet</th>
+        <th>Description</th>
+        <th>Date de Consultation</th>
+        <th>Statut</th>
+        <th>Type d'Assurance</th>
+        <th>Note</th>
+        <th>Commentaire</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="filteredConsultations.length === 0">
+        <td colspan="9">Aucune consultation trouvée</td>
+      </tr>
+      <tr *ngFor="let consultation of filteredConsultations | paginate: { itemsPerPage: 10, currentPage: page }">
+        <td>{{ consultation.id }}</td>
+        <td>{{ consultation.objet }}</td>
+        <td>{{ consultation.description }}</td>
+        <td>{{ consultation.dateConsultation | date:'d MMM y - HH:mm' }}</td>
+        <td>
+          <span class="badge {{ consultation.statut }}">{{ consultation.statut || 'Non défini' }}</span>
+        </td>
+        <td>{{ consultation.insuranceType }}</td>
+        <td>{{ consultation.rating || 'Non notée' }}</td>
+        <td>{{ consultation.comment || 'Aucun commentaire' }}</td>
+        <td class="action-buttons">
+          <button *ngIf="consultation.id && consultation.statut !== 'VALIDÉE' && consultation.statut !== 'REJETÉE'"
+                  class="btn-accept" (click)="acceptConsultation(consultation.id)">
+            Accepter
+          </button>
+          <button *ngIf="consultation.id && consultation.statut !== 'VALIDÉE' && consultation.statut !== 'REJETÉE'"
+                  class="btn-reject" (click)="rejectConsultation(consultation.id)">
+            Refuser
+          </button>
+          <button *ngIf="consultation.id" class="btn-delete" (click)="deleteConsultation(consultation.id)">
+            Supprimer
+          </button>
+          <button class="btn-export" (click)="exportToPDF(consultation)">
+             PDF
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>

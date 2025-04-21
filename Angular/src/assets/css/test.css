@@ -1,0 +1,94 @@
+.contract-selection {
+    background: linear-gradient(135deg, #3a3b3d 20%, #272727 80%);
+    border-radius: 20px;
+    padding: 50px;
+    width: 85%;
+    margin: 50px auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #ffffff;
+}
+
+.contract-header h1 {
+    font-size: 2.8rem;
+    color: #e8a53a; /* Doré élégant */
+    font-weight: bold;
+}
+
+.contract-header p {
+    font-size: 1.2rem;
+    color: #9d9d9d;
+    margin-bottom: 30px;
+}
+
+.contract-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contract-options .card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contract-options .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.contract-options .card h3 {
+    font-size: 1.5rem;
+    color: #e8a53a; /* Doré élégant */
+    margin-bottom: 10px;
+}
+
+.contract-options .card a {
+    text-decoration: none;
+    color: white;
+    background: #f38f1d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.contract-options .card a:hover {
+    background: transparent;
+    border: 1px solid #f38f1d;
+}
+
+.contract-info {
+    margin-top: 30px;
+}
+
+.contract-info h3 {
+    font-size: 2rem;
+    color: #e8a53a; /* Doré élégant */
+}
+
+.contract-info p {
+    font-size: 1.2rem;
+    color: #9d9d9d;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contract-info button {
+    text-decoration: none;
+    color: white;
+    background: #f38f1d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.contract-info button:hover {
+    background: transparent;
+    border: 1px solid #f38f1d;
+}

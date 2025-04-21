@@ -1,0 +1,56 @@
+/* Style du tableau (look backend) */
+.table {
+    background: #fff;
+    border: 1px solid #ddd;
+    
+  }
+  
+  .thead-dark {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Style des boutons d'action */
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+
+  }
+  /* Espacement entre les boutons */
+.action-buttons button {
+  margin-right: 5px; /* Ajuste l'espace entre les boutons */
+}
+
+  
+  /* Style de la pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item .page-link {
+    color: #004b8d;
+    border: 1px solid #ddd;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #004b8d;
+    border-color: #004b8d;
+    color: #fff;
+  }
+  

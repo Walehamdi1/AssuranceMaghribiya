@@ -1,0 +1,42 @@
+<div class="card">
+    <h2>Modifier mon profil</h2>
+  
+    <div class="p-fluid">
+      <!-- Nom -->
+      <div class="field">
+        <label>Nom</label>
+        <input pInputText [(ngModel)]="expert.nom" required [ngClass]="{'p-invalid': submitted && !expert.nom}" />
+        <div *ngIf="submitted && !expert.nom" class="p-error">Le nom est requis.</div>
+      </div>
+  
+      <!-- Prénom -->
+      <div class="field">
+        <label>Prénom</label>
+        <input pInputText [(ngModel)]="expert.prenom" required [ngClass]="{'p-invalid': submitted && !expert.prenom}" />
+        <div *ngIf="submitted && !expert.prenom" class="p-error">Le prénom est requis.</div>
+      </div>
+  
+      <!-- Email avec validation de format -->
+      <div class="field">
+        <label>Email</label>
+        <input pInputText [(ngModel)]="expert.email" required [ngClass]="{'p-invalid': submitted && !emailValid()}" />
+        <div *ngIf="submitted && !emailValid()" class="p-error">Veuillez entrer un email valide.</div>
+      </div>
+  
+      <!-- Spécialité (ChoiceBox avec options) -->
+      <div class="field">
+        <label>Spécialité</label>
+        <p-dropdown [(ngModel)]="expert.specialite" [options]="specialiteOptions" optionLabel="label"
+            [required]="true" [ngClass]="{'p-invalid': submitted && !expert.specialite}">
+</p-dropdown>
+<div *ngIf="submitted && !expert.specialite" class="p-error">La spécialité est requise.</div>
+<div *ngIf="submitted && !expert.specialite" class="p-error">La spécialité est requise.</div>
+        <div *ngIf="submitted && !expert.specialite" class="p-error">La spécialité est requise.</div>
+      </div>
+  
+      <!-- Bouton de mise à jour -->
+      <p-button label="Mettre à jour" icon="pi pi-check" (click)="updateExpert()" [disabled]="!isFormValid()"></p-button>
+    </div>
+  </div>
+  
+  <p-toast></p-toast>

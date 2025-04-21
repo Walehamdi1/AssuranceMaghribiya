@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Evidence File</h2>
+    <ng-container *ngIf="fileUrl; else noFile">
+      <iframe [src]="fileUrl" width="100%" height="600px"></iframe>
+    </ng-container>
+    <ng-template #noFile>
+      <p>No file available.</p>
+    </ng-template>
+  </div>

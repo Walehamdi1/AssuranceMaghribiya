@@ -1,0 +1,334 @@
+:root {
+  --green-soft: #d1f2e6;
+  --green-dark: #1d7a4d;
+  --red-soft: #f8d7da;
+  --red-dark: #a94442;
+  --blue-soft: #d1ecf1;
+  --blue-dark: #0c5460;
+  --gray-soft: #e2e3e5;
+  --gray-dark: #383d41;
+  --bg-light: #f4f4f4;
+  --white: #ffffff;
+  --primary: #007bff;
+}
+
+/* Base */
+body {
+  background-color: var(--bg-light);
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container */
+.consultation-list-container {
+  max-width: 1250px;
+  margin: 40px auto;
+  padding: 30px;
+  background: var(--white);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+}
+
+/* Titres */
+.consultation-title, h3 {
+  text-align: center;
+  color: #2d2d2d;
+  margin-bottom: 25px;
+}
+
+/* Bouton Statistiques */
+.btn-stats {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-stats:hover {
+  background-color: #0056b3;
+}
+
+/* Filtres */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filters label {
+  font-weight: 600;
+}
+
+.filters select,
+.filters input[type="date"] {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+/* Tableau */
+.consultation-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.consultation-list th {
+  background-color: var(--primary);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.consultation-list td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.consultation-list tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.consultation-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.badge.EN_COURS {
+  background-color: #17a2b8;
+}
+
+.badge.VALIDÉE {
+  background-color: #28a745;
+}
+
+.badge.REJETÉE {
+  background-color: #dc3545;
+}
+
+/* Boutons raffinés */
+.action-buttons button {
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 4px;
+}
+
+.action-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+/* Couleurs boutons */
+.btn-accept {
+  background-color: var(--green-soft);
+  color: var(--green-dark);
+  border-color: #b2e3d2;
+}
+
+.btn-accept:hover {
+  background-color: #b2e3d2;
+  color: #125e39;
+}
+
+.btn-reject {
+  background-color: var(--red-soft);
+  color: var(--red-dark);
+  border-color: #f1b0b7;
+}
+
+.btn-reject:hover {
+  background-color: #f1b0b7;
+  color: #912d2d;
+}
+
+.btn-delete {
+  background-color: var(--gray-soft);
+  color: var(--gray-dark);
+  border-color: #d6d8db;
+}
+
+.btn-delete:hover {
+  background-color: #d6d8db;
+  color: #2c3035;
+}
+
+.btn-export {
+  background-color: var(--blue-soft);
+  color: var(--blue-dark);
+  border-color: #bee5eb;
+}
+
+.btn-export:hover {
+  background-color: #bee5eb;
+  color: #084c56;
+}
+
+/* Experts */
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+li button {
+  background-color: #ffeeba;
+  color: #856404;
+  border-radius: 8px;
+  padding: 6px 12px;
+  border: 1px solid #ffeeba;
+}
+
+li button:hover {
+  background-color: #fff3cd;
+}
+
+/* Notifications */
+.notification {
+  padding: 12px 18px;
+  border-radius: 8px;
+  background-color: var(--blue-soft);
+  color: var(--blue-dark);
+  margin-bottom: 16px;
+  border: 1px solid var(--blue-dark);
+  font-size: 0.95rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.badge {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Pagination */
+.pagination-controls {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .consultation-list-container {
+    padding: 20px;
+  }
+}
+.action-dropdown {
+  position: relative;
+}
+
+/* Bouton principal */
+.dropdown-toggle {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dropdown-toggle:hover {
+  background-color: #e2e6ea;
+}
+
+/* Menu déroulant */
+.dropdown-menu {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  min-width: 160px;
+  z-index: 1000;
+}
+
+/* Items de la liste */
+.dropdown-menu li {
+  padding: 4px 16px;
+}
+
+.dropdown-menu li button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 0.85rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu li button:hover {
+  background-color: #f2f2f2;
+  border-radius: 6px;
+}
+* Bouton Statistiques */
+.btn-stats {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-stats:hover {
+  background-color: #0056b3;
+}
+
+/* Section Statistiques */
+.consultation-list-container h3 {
+  margin-top: 20px;
+  color: #444;
+}

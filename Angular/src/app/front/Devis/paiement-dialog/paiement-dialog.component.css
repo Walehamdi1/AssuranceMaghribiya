@@ -1,0 +1,107 @@
+/* Style général du titre */
+h2 {
+  text-align: center;
+  color: #1c1c1c; /* Couleur foncée pour correspondre à l'apparence des devis */
+  margin-bottom: 15px;
+}
+
+/* Style des paragraphes d'information */
+p {
+  font-size: 16px;
+  color: #333; /* Assurez-vous que la couleur reste lisible et cohérente */
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Style des labels */
+label {
+  font-weight: bold;
+  color: #1c1c1c; /* Couleur foncée pour le label */
+  display: block;
+  margin: 10px 0 5px;
+}
+
+/* Style des champs de formulaire (select, input, button) */
+select,
+input[type="number"],
+button {
+  color: #333;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd; /* Légèrement plus clair pour plus de finesse */
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Style pour le select, avec un fond doux */
+select {
+  background-color: #f1f1f1; /* Gris clair pour un effet doux */
+}
+
+/* Style pour les boutons radio (petit espacement à droite) */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Container global */
+div {
+  margin-bottom: 10px;
+}
+
+/* Style du bouton de paiement principal */
+button {
+  background-color: #ff9f00; /* Couleur correspondant à un ton doré/orange, rappelant la palette du devis */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Couleur au survol du bouton principal */
+button:hover {
+  background-color: #e68900; /* Teinte plus foncée pour un effet de survol */
+  transform: scale(1.02); /* Légère augmentation pour effet interactif */
+}
+
+/* Style du bouton "Annuler" ou d'action secondaire */
+button:last-child {
+  background-color: #dc3545; /* Rouge pour l'action de suppression ou annulation */
+}
+
+/* Couleur au survol du bouton "Annuler" */
+button:last-child:hover {
+  background-color: #b02a37; /* Rouge plus foncé lors du survol */
+}
+
+/* Container du paiement (taille et fond) */
+.paiement-container {
+  max-width: 450px; /* Un peu plus large pour un design aéré */
+  margin: auto;
+  padding: 20px;
+  background: #fff; /* Blanc classique pour un fond propre */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  border: 1px solid #eaeaea; /* Bordure douce pour délimiter le formulaire */
+}
+
+/* Adaptation pour un fond de formulaire léger */
+.paiement-container input, 
+.paiement-container select {
+  background-color: #f9f9f9; /* Fond très clair pour la saisie */
+}
+
+/* Styles d'état actif pour les champs de formulaire */
+.paiement-container input:focus,
+.paiement-container select:focus {
+  border-color: #ff9f00; /* Ligne orange pour souligner le champ actif */
+  outline: none;
+}
+
+/* Styles des titres et informations des sections */
+h2, p {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #333;
+}

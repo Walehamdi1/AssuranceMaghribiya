@@ -1,0 +1,91 @@
+/* contract-crud.component.scss */
+.my-header {
+    font-size: 2rem;         /* Adjust as needed */
+    font-weight: 700;        /* Bold */
+    color: #5e72e4;          /* Argon's default primary color */
+    text-align: center;
+    margin-bottom: 1rem;     /* Spacing below the text */
+  }
+  @import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+  
+  .form-control {
+    color: #000 !important; /* Force black text */
+    transition: border-color 0.3s ease;
+  }
+
+  .card {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  .form-control:focus {
+    border-color: #5e72e4;
+    box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+  }
+  .my-custom-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .my-custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .card-header h2, .card-header h3 {
+    font-weight: 700;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .invalid-feedback {
+    font-size: 0.9rem;
+    color: #e74c3c;
+    font-weight: 500;
+  }
+  .btn-fixed-size {
+    width: 100px; /* Adjust this width as needed */
+  }
+  .card.bg-secondary {
+    background-color: transparent !important; /* or your preferred color */
+  }
+  .cancel-btn {
+    background-color: #f44336; /* Red background */
+    color: #fff;              /* White text */
+    border: none;
+    border-radius: 4px;       /* Slightly rounded corners */
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: #d32f2f; /* Darker red on hover */
+      transform: translateY(-2px); /* Slight lift */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+    .input-group-text {
+      background-color: #fff; /* or another color if you prefer */
+      border: 1px solid #ced4da;
+    }
+    
+    .fa-search {
+      color: #999; /* A subtle gray for the icon */
+    }
+    
+  }
+  

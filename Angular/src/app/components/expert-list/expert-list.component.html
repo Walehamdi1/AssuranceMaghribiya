@@ -1,0 +1,84 @@
+<div class="expert-list">
+  <h2>Liste des Experts</h2>
+
+  <!-- Filtrage par spécialité -->
+  <p-dropdown
+    [options]="specialties"
+    [(ngModel)]="selectedSpecialty"
+    (ngModelChange)="applyFilters()"  
+    placeholder="Sélectionner une spécialité"
+    [filter]="true"
+    optionLabel="label"
+    optionValue="value">
+  </p-dropdown>
+
+  <!-- Filtrage par rating -->
+  <p-slider 
+    [(ngModel)]="ratingFilter" 
+    [min]="0" 
+    [max]="5" 
+    [step]="0.1" 
+    [style]="{ width: '100%' }" 
+    tooltip="Adjust the rating"
+    tooltipFormat="num" 
+    placeholder="Filtrer par rating"
+    (ngModelChange)="applyFilters()"> <!-- Fermeture correcte de la balise -->
+  </p-slider>
+
+  <!-- Liste des experts -->
+  <div *ngIf="filteredExperts.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Spécialité</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expert of filteredExperts">
+          <td>{{ expert.id }}</td>
+          <td>{{ expert.nom }}</td>
+          <td>{{ expert.prenom }}</td>
+          <td>{{ expert.email }}</td>
+          <td>{{ expert.specialite }}</td>
+          <td>
+            <p-rating [(ngModel)]="expert.rating" [stars]="5" [cancel]="false"></p-rating>
+          </td>
+          <td class="action-buttons">
+            <button 
+            (click)="deleteExpert(expert.id)" 
+            *ngIf="expert.id !== undefined" 
+            class="btn-delete"
+            pTooltip="Supprimer l'expert"
+            tooltipPosition="top">
+            <i class="pi pi-trash"></i> Supprimer
+          </button> 
+          <button 
+          *ngIf="selectedConsultation" 
+          (click)="assignExpertToConsultation(selectedConsultation, expert)" 
+          class="btn-assign"
+          pTooltip="Assigner à la consultation"
+          tooltipPosition="top">
+          <i class="pi pi-user-plus"></i> Affecter à la consultation
+        </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Message si aucune donnée -->
+  <div *ngIf="filteredExperts.length === 0">
+    Aucun expert trouvé.
+  </div>
+
+  <p-toast></p-toast>
+
+
+  
+</div>

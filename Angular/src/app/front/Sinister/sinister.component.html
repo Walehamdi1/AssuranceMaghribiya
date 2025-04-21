@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/assets/css/style55.css">
+<div class="container">
+    <!-- Header Section with Background Image -->
+    <div class="header">
+      <h1>Welcome to your dedicated online portal for your incident application</h1>
+      <p>Let's get you started. It's easy.</p>
+      <div class="header-buttons">
+        <button class="header-button" routerLink="/manage-policy">MANAGE MY POLICY</button>
+        <button class="header-button" routerLink="/create">CREATE A CLAIM</button>
+        <button class="header-button" routerLink="/track">TRACK A CLAIM</button>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+      <h2>Features</h2>
+      <h3>Claims handled fast & easy</h3>
+       <!-- QR Code Section -->
+      <p>No one wants to spend their time filing a claim, but if an unfortunate event happens we're here to help make it be as painless as possible.</p>
+      <div class="qr-code-container">
+        <img [src]="qrCodeImage" alt="QR Code" *ngIf="qrCodeImage" class="qr-code">
+        <p *ngIf="!qrCodeImage">Generating QR code...</p>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="cards-section">
+      <div class="card">
+        <h4>Manage your policy</h4>
+        <p>Take control of your policy with ease. Manage your insurance anytime, anywhere. Cancel, modify, or request a certificate effortlessly.</p>
+        <button class="card-button" routerLink="/manage-policy">Manage my policy</button>
+      </div>
+      <div class="card">
+        <h4>Create a new claim</h4>
+        <p>Easily start the reimbursement process by filing your claim online for covered incidents. Provide incident details and documents to start the reimbursement process quickly.</p>
+        <button class="card-button" routerLink="/create">Create a claim</button>
+      </div>
+      <div class="card">
+        <h4>Track a submitted claim</h4>
+        <p>After submitting your claim, you can come back to add additional documents and track your claim progress here.</p>
+        <button class="card-button" routerLink="/track">Track a claim</button>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,351 @@
+<main>
+  <section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span><span></span><span></span><span></span><span></span
+      ><span></span><span></span><span></span>
+    </div>
+
+    <div class="container pt-lg-md">
+      <!-- Use Bootstrap row/col to center the form -->
+      <div class="row justify-content-center">
+        <!-- Adjust the column width as desired (e.g., col-lg-8, col-md-10) -->
+        <div class="col-lg-8">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-white pb-5">
+              <div class="my-header">
+                {{ selectedContract ? "Update Contract" : "Create Contract" }}
+              </div>
+            </div>
+            <!-- Cancel Button (only shows in Edit mode) -->
+            <div class="text-center">
+              <button
+                *ngIf="selectedContract"
+                type="button"
+                class="cancel-btn"
+                (click)="cancelEdit()"
+              >
+                Cancel
+              </button>
+            </div>
+
+            <div class="card-body px-lg-5 py-lg-5">
+              <form [formGroup]="contractForm" (ngSubmit)="onSubmit()">
+                <!-- CONTRACT NUMBER -->
+                <div class="form-group">
+                  <label for="contractNumber">Contract Number</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-id-card"></i>
+                      </span>
+                    </div>
+                    <input
+                      id="contractNumber"
+                      formControlName="contractNumber"
+                      type="text"
+                      placeholder="Contract Number"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': isFieldInvalid('contractNumber')
+                      }"
+                    />
+                  </div>
+                  <!-- Error Message -->
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="isFieldInvalid('contractNumber')"
+                  >
+                    Contract Number is required.
+                  </div>
+                </div>
+
+                <!-- START DATE -->
+                <div class="form-group">
+                  <label for="startDate">Start Date</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                    <input
+                      id="startDate"
+                      formControlName="startDate"
+                      type="date"
+                      placeholder="Start Date"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': isFieldInvalid('startDate') }"
+                    />
+                  </div>
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="isFieldInvalid('startDate')"
+                  >
+                    Start Date is required.
+                  </div>
+                </div>
+
+                <!-- END DATE -->
+                <div class="form-group">
+                  <label for="endDate">End Date</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                    <input
+                      id="endDate"
+                      formControlName="endDate"
+                      type="date"
+                      placeholder="End Date"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': isFieldInvalid('endDate') }"
+                    />
+                  </div>
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="isFieldInvalid('endDate')"
+                  >
+                    End Date is required.
+                  </div>
+                </div>
+
+                <!-- TYPE -->
+                <div class="form-group">
+                  <label for="type">Type</label>
+                  <div class="input-group input-group-alternative">
+                    <input
+                      id="type"
+                      formControlName="type"
+                      type="text"
+                      placeholder="Type (e.g., Auto Insurance)"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': isFieldInvalid('type') }"
+                    />
+                  </div>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('type')">
+                    Contract Type is required.
+                  </div>
+                </div>
+
+                <!-- STATUS -->
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select
+                    id="status"
+                    formControlName="status"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': isFieldInvalid('status') }"
+                  >
+                    <option value="">Select Status</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="EXPIRED">Expired</option>
+                    <option value="CANCELED">Canceled</option>
+                  </select>
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="isFieldInvalid('status')"
+                  >
+                    Status is required.
+                  </div>
+                </div>
+
+                <!-- PROPERTY DETAILS (NESTED FORM GROUP) -->
+                <div formGroupName="property" class="mt-4">
+                  <h5 class="text-muted">Property Details</h5>
+
+                  <!-- ADDRESS -->
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-map-marker-alt"></i>
+                        </span>
+                      </div>
+                      <input
+                        id="address"
+                        formControlName="address"
+                        type="text"
+                        placeholder="Property Address"
+                        class="form-control"
+                        [ngClass]="{
+                          'is-invalid': isFieldInvalid('property.address')
+                        }"
+                      />
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="isFieldInvalid('property.address')"
+                    >
+                      Property Address is required.
+                    </div>
+                  </div>
+
+                  <!-- AREA -->
+                  <div class="form-group">
+                    <label for="area">Area</label>
+
+                    <input
+                      id="area"
+                      formControlName="area"
+                      type="number"
+                      placeholder="Area"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': isFieldInvalid('property.area')
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="isFieldInvalid('property.area')"
+                    >
+                      Area is required and must be greater than 0.
+                    </div>
+                  </div>
+
+                  <!-- PROPERTY TYPE -->
+                  <div class="form-group">
+                    <label for="propertyType">Property Type</label>
+                    <select
+                      id="propertyType"
+                      formControlName="propertyType"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': isFieldInvalid('property.propertyType')
+                      }"
+                    >
+                      <option value="">Select Property Type</option>
+                      <option value="RESIDENTIAL">Residential</option>
+                      <option value="COMMERCIAL">Commercial</option>
+                      <option value="INDUSTRIAL">Industrial</option>
+                      <option value="AGRICULTURAL">Agricultural</option>
+                    </select>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="isFieldInvalid('property.propertyType')"
+                    >
+                      Property Type is required.
+                    </div>
+                  </div>
+
+                  <!-- VALUE -->
+                  <div class="form-group">
+                    <label for="value">Value</label>
+                    <input
+                      id="value"
+                      formControlName="value"
+                      type="number"
+                      placeholder="Value"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': isFieldInvalid('property.value')
+                      }"
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="isFieldInvalid('property.value')"
+                    >
+                      Value is required and cannot be negative.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mt-4">
+                    {{
+                      selectedContract ? "Update Contract" : "Create Contract"
+                    }}
+                  </button>
+                </div>
+              </form>
+              <!-- Display global message -->
+              <div *ngIf="message" class="alert alert-info mt-3">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+          <!-- Search Bar -->
+          <div class="form-group">
+            <div class="input-group">
+              <!-- Icon Prepend -->
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-search"></i>
+                </span>
+              </div>
+              <!-- Search Input -->
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by Contract Number"
+                [(ngModel)]="searchTerm"
+                (ngModelChange)="onSearchChange()"
+              />
+            </div>
+          </div>
+
+          <!-- TABLE OF CONTRACTS -->
+          <div class="card bg-secondary shadow border-0 mt-4">
+            <div class="my-header">
+              <h2 class="text-center">List of Contracts</h2>
+            </div>
+            <div class="card-body">
+              <div *ngIf="isLoading" class="text-center">
+                <p>Loading contracts...</p>
+              </div>
+              <table *ngIf="!isLoading" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Contract #</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Property Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let contract of filteredContracts">
+                    <td>{{ contract.contractNumber }}</td>
+                    <td>{{ contract.type }}</td>
+                    <td>{{ contract.status }}</td>
+                    <td>{{ contract.property?.address }}</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning mr-2 btn-fixed-size"
+                        (click)="onEdit(contract)"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger btn-fixed-size"
+                        (click)="onDelete(contract)"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        class="btn btn-sm btn-info btn-fixed-size"
+                        (click)="downloadPDF(contract)"
+                      >
+                        PDF
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="contracts.length === 0">
+                    <td colspan="5" class="text-center">No contracts found.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- /col-lg-8 -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </section>
+</main>

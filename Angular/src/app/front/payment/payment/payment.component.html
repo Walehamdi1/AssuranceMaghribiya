@@ -1,0 +1,12 @@
+
+<link rel="stylesheet" href="/assets/css/style55.css">
+
+<form [formGroup]="paymentForm" (ngSubmit)="pay()">
+    <label>Nom du titulaire de la carte</label>
+    <input type="text" formControlName="name" required />
+  
+    <ngx-stripe-card #card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+  
+    <button type="submit" class="btn btn-primary">Payer</button>
+  </form>
+  

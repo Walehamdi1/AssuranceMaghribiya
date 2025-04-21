@@ -1,0 +1,113 @@
+.login-wrapper {
+    height: 100vh;
+    background: linear-gradient(to right, #1e1e2f, #2c2c3a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+  
+    .login-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      text-align: center;
+  
+      .login-header {
+        margin-bottom: 30px;
+  
+        h2 {
+          margin: 0;
+          font-size: 28px;
+        }
+  
+        p {
+          font-size: 14px;
+          color: #ccc;
+        }
+      }
+  
+      .login-form {
+        .form-group {
+          position: relative;
+          margin-bottom: 20px;
+  
+          i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #aaa;
+          }
+  
+          input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+  
+            &:focus {
+              outline: none;
+              background: rgba(255, 255, 255, 0.15);
+            }
+          }
+        }
+  
+        .options {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 13px;
+          color: #ccc;
+          margin-bottom: 20px;
+  
+          .forgot {
+            color: #fff;
+            text-decoration: none;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        .login-btn {
+          width: 100%;
+          padding: 12px;
+          background: #5e60ce;
+          border: none;
+          border-radius: 10px;
+          color: #fff;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.3s;
+  
+          &:hover {
+            background: #4b4dde;
+          }
+        }
+  
+        .signup-link {
+          margin-top: 20px;
+          font-size: 14px;
+  
+          a {
+            color: #a0c4ff;
+            text-decoration: none;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }

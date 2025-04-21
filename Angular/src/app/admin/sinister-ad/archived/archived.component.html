@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+      <h1 class="card-subtitle">Archived Sinisters</h1>
+  
+      <!-- Data Table -->
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="black-header">
+            <tr>
+              <th>Date of Incident</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Location</th>
+              <th>Type Insurance</th>
+              <th>Date of Creation</th>
+              <th>Client Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sinister of archivedSinisters">
+              <td>{{ sinister.dateOfIncident | date }}</td>
+              <td>{{ sinister.description }}</td>
+              <td>{{ sinister.status }}</td>
+              <td>{{ sinister.location }}</td>
+              <td>{{ sinister.typeInsurance }}</td>
+              <td>{{ sinister.dateofcreation | date }}</td>
+              <td>{{ getUserName(sinister.user) }}</td>
+
+              <td>
+                <button class="btn btn-sm custom-grey-btn" (click)="unarchiveSinister(sinister.id)">Unarchive</button>
+              </td>
+            </tr>
+            <tr *ngIf="archivedSinisters.length === 0">
+              <td colspan="8" class="text-center">No archived sinisters found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <div>
+
+    <button routerLink="/admin/sinister" class="btn btn-secondary">Back to List</button>
+  </div>
+    </div>
+  </div>

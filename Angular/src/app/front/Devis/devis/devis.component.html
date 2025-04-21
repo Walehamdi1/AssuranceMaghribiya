@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/assets/css/style55.css" />
+<div class="container my-4">
+  <h2 class="text-center mb-4">
+    {{ "Create Devis" }}
+  </h2>
+  <form [formGroup]="firstFormGroup" (ngSubmit)="createDevis()">
+    <div class="form-group">
+      <label for="nomClient">Nom Client</label>
+      <input
+        id="nomClient"
+        type="text"
+        class="form-control"
+        formControlName="nomClient"
+        placeholder="Nom Client"
+      />
+      <div *ngIf="isFieldInvalid('nomClient')" class="text-danger">
+        <div *ngIf="firstFormGroup.get('nomClient')?.hasError('required')">
+          Nom Client is required.
+        </div>
+        <div *ngIf="firstFormGroup.get('nomClient')?.hasError('minlength')">
+          Nom Client must be at least 5 characters long.
+        </div>
+        <div *ngIf="firstFormGroup.get('nomClient')?.hasError('pattern')">
+          Nom Client must contain only letters.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="emailClient">Email Client</label>
+      <input
+        id="emailClient"
+        type="email"
+        class="form-control"
+        formControlName="emailClient"
+        placeholder="Email Client"
+      />
+      <div *ngIf="isFieldInvalid('emailClient')" class="text-danger">
+        Email format must be "example &#64; gmail.tt"
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dateDebut">Start Date</label>
+        <input
+          id="dateDebut"
+          type="date"
+          class="form-control"
+          formControlName="dateDebut"
+        />
+        <div *ngIf="isFieldInvalid('dateDebut')" class="text-danger">
+          Start Date is required and cannot be earlier than today.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dateFin">End Date</label>
+        <input
+          id="dateFin"
+          type="date"
+          class="form-control"
+          formControlName="dateFin"
+        />
+        <div *ngIf="isFieldInvalid('dateFin')" class="text-danger">
+          End Date is required and must be after Start Date.
+        </div>
+        <div
+          *ngIf="firstFormGroup.hasError('endDateInvalid')"
+          class="text-danger"
+        >
+          End date must be after start date.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="trancheAge">Tranche Age</label>
+      <input
+        id="trancheAge"
+        type="number"
+        class="form-control"
+        formControlName="trancheAge"
+        placeholder="Tranche Age"
+      />
+      <div *ngIf="isFieldInvalid('trancheAge')" class="text-danger">
+        <div *ngIf="firstFormGroup.get('trancheAge')?.hasError('required')">
+          Tranche Age is required.
+        </div>
+        <div *ngIf="firstFormGroup.get('trancheAge')?.hasError('min')">
+          Tranche Age must be at least 1 year.
+        </div>
+        <div *ngIf="firstFormGroup.get('trancheAge')?.hasError('max')">
+          Tranche Age must be at most 100 years.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nationalite">Nationalité</label>
+      <select
+        id="nationalite"
+        class="form-control"
+        formControlName="nationalite"
+      >
+        <option value="">Select Nationality</option>
+        <option *ngFor="let nat of nationalites" [value]="nat">
+          {{ nat }}
+        </option>
+      </select>
+      <div *ngIf="isFieldInvalid('nationalite')" class="text-danger">
+        Nationalité is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="destination">Destination</label>
+      <input
+        id="destination"
+        type="text"
+        class="form-control"
+        formControlName="destination"
+        placeholder="Destination"
+      />
+      <div *ngIf="isFieldInvalid('destination')" class="text-danger">
+        <div *ngIf="firstFormGroup.get('destination')?.hasError('required')">
+          Destination is required.
+        </div>
+        <div *ngIf="firstFormGroup.get('destination')?.hasError('pattern')">
+          Destination must only contain letters and spaces.
+        </div>
+        <div *ngIf="firstFormGroup.get('destination')?.hasError('minlength')">
+          min 3 letters
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <re-captcha (resolved)="captchaResolved($event)" [siteKey]="siteKey">
+      </re-captcha>
+      <button
+        type="submit"
+        class="btn btn-custom"
+        [disabled]="firstFormGroup.invalid || !captchaValid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
