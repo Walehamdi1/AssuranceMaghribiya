@@ -1,0 +1,8 @@
+{
+  "retard": ["retard", "délai", "tardif", "retardé", "en retard"],
+  "problème technique": ["problème technique", "erreur technique", "dysfonctionnement", "panne", "bug"],
+  "facture": ["facture", "erreur de facturation", "montant incorrect", "facture erronée", "frais supplémentaires"],
+  "service client": ["service client", "représentant", "assistance", "support", "helpdesk"],
+  "annulation": ["annulation", "résiliation", "abonnement", "fin de contrat", "désabonnement"],
+  "remboursement": ["remboursement", "demande de remboursement", "montant remboursé", "paiement effectué"]
+}
